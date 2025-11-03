@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>СмартфонШоп</title>
+    <title>СмартПлощадка</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app">
-        <!-- Корзина в правом верхнем углу -->
+    <div class="container">
+
+        <!-- Заголовок -->
+        <header class="header">
+            <h1>СмартПлощадка</h1>
+            <p>Продажа смартфонов с быстрой доставкой</p>
+        </header>
+
+        <!-- Корзина -->
         <div id="cart-icon" class="cart-icon">🛒 <span id="cart-count">0</span></div>
         <div id="cart-modal" class="modal hidden">
             <h3>Корзина</h3>
@@ -17,45 +24,29 @@
             <button id="checkout-btn">Оформить заказ</button>
         </div>
 
-        <!-- Баннер (слайдер) -->
-        <div id="banner" class="banner">
-            <div class="slide active">🔥 Скидка 20% на Samsung Galaxy S24! Только до 10 ноября.</div>
-            <div class="slide">🤝 Партнёр Honor: Бесплатная доставка на Magic 6 Pro!</div>
-            <div class="slide">🎉 Акция Huawei: Купи Pura 70 Ultra — чехол в подарок!</div>
-        </div>
-
-        <!-- Каталог брендов -->
-        <div id="catalog" class="catalog">
-            <h2>Выберите бренд</h2>
-            <div class="brands">
-                <button onclick="showBrand('samsung')" class="brand-btn">Samsung</button>
-                <button onclick="showBrand('honor')" class="brand-btn">Honor</button>
-                <button onclick="showBrand('huawei')" class="brand-btn">Huawei</button>
-                <button onclick="showBrand('realme')" class="brand-btn">Realme</button>
-                <button onclick="showBrand('tecno')" class="brand-btn">Tecno</button>
-            </div>
-        </div>
-
-        <!-- Страница бренда (карточки) -->
-        <div id="brand-page" class="brand-page hidden">
-            <button onclick="backToCatalog()" class="back-btn">← Назад</button>
-            <h2 id="brand-title"></h2>
+        <!-- Каталог -->
+        <main id="catalog" class="catalog">
             <div id="phones-list" class="phones-grid"></div>
-        </div>
+        </main>
 
-        <!-- Детальная страница смартфона -->
+        <!-- Детальная страница -->
         <div id="phone-detail" class="phone-detail hidden">
-            <button onclick="backToBrand()" class="back-btn">← Назад</button>
+            <button onclick="backToCatalog()" class="back-btn">← Назад</button>
+            <img id="phone-img" alt="">
             <h2 id="phone-name"></h2>
-            <img id="phone-img" alt="Фото смартфона">
-            <div id="phone-desc"></div>
-            <ul id="phone-specs"></ul>
-            <div class="price-section">
+            <div class="price">
                 <span class="old-price" id="old-price"></span>
                 <span class="new-price" id="new-price"></span>
             </div>
-            <button id="add-to-cart" class="add-cart-btn">В КОРЗИНУ</button>
+            <ul id="phone-specs"></ul>
+            <button id="add-to-cart" class="buy-btn">Купить</button>
         </div>
+
+        <!-- Футер -->
+        <footer class="footer">
+            <p>ИП Голиков Никита Сергеевич</p>
+            <p>ИНН: 253502067548</p>
+        </footer>
     </div>
 
     <script src="script.js"></script>
