@@ -1,39 +1,138 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fff; color: #000; }
-.container { max-width: 600px; margin: 0 auto; padding: 10px; }
-
-.header { text-align: center; padding: 20px 0; }
-.header h1 { font-size: 24px; font-weight: 600; }
-.header p { font-size: 14px; color: #555; margin-top: 5px; }
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+    background: #1a1a2e; 
+    color: #e0e0e0; 
+}
+.container { max-width: 600px; margin: 0 auto; padding: 12px; }
 
 .hidden { display: none; }
 
-/* Корзина */
-.cart-icon { position: fixed; top: 15px; right: 15px; background: #000; color: #fff; padding: 10px 12px; border-radius: 50%; font-size: 18px; z-index: 100; }
-#cart-count { background: #ff3b30; border-radius: 50%; padding: 2px 6px; font-size: 12px; }
-.modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); width: 90%; max-width: 320px; z-index: 101; }
-.modal h3 { margin-bottom: 10px; }
-.modal ul { list-style: none; margin: 10px 0; }
-.modal button { width: 100%; background: #007aff; color: #fff; border: none; padding: 12px; border-radius: 8px; font-size: 16px; }
+/* Баннер */
+.banner { 
+    background: #16213e; 
+    padding: 16px; 
+    border-radius: 12px; 
+    margin-bottom: 16px; 
+    text-align: center; 
+    font-weight: 600; 
+    color: #bb86fc; 
+}
+.slide { display: none; }
+.slide.active { display: block; }
 
-/* Каталог */
-.phones-grid { display: grid; gap: 16px; }
-.phone-card { background: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; cursor: pointer; }
-.phone-card img { width: 100%; height: 180px; object-fit: cover; }
-.phone-card h3 { padding: 12px 16px 4px; font-size: 16px; font-weight: 600; }
-.phone-card .price { padding: 0 16px 12px; }
-.old-price { text-decoration: line-through; color: #888; font-size: 14px; }
-.new-price { font-size: 18px; font-weight: 600; color: #000; }
+/* Поиск */
+.search-bar { margin-bottom: 16px; }
+#search-input { 
+    width: 100%; 
+    padding: 12px; 
+    border: 1px solid #444; 
+    border-radius: 12px; 
+    background: #16213e; 
+    color: #fff; 
+    font-size: 16px; 
+}
+
+/* Бренды */
+.brands-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+    margin-bottom: 16px; 
+}
+.brand-btn { 
+    background: #16213e; 
+    border: 1px solid #444; 
+    color: #bb86fc; 
+    padding: 16px; 
+    border-radius: 12px; 
+    font-size: 16px; 
+    font-weight: 600; 
+    text-align: center; 
+    transition: 0.2s; 
+}
+.brand-btn:active { background: #0f1b3a; }
+
+/* Карточки */
+.phones-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 14px; 
+}
+.phone-card { 
+    background: #16213e; 
+    border-radius: 12px; 
+    overflow: hidden; 
+    cursor: pointer; 
+    transition: 0.2s; 
+}
+.phone-card:active { transform: scale(0.98); }
+.phone-card img { width: 100%; height: 140px; object-fit: cover; }
+.phone-card h3 { padding: 10px 12px 4px; font-size: 14px; font-weight: 600; }
+.phone-card p { padding: 0 12px 8px; font-size: 12px; color: #aaa; }
+.phone-card .price { padding: 0 12px 8px; }
+.old-price { text-decoration: line-through; font-size: 12px; color: #777; }
+.new-price { font-size: 15px; font-weight: 600; color: #bb86fc; }
+.buy-btn-card { 
+    width: 100%; 
+    background: #bb86fc; 
+    color: #000; 
+    border: none; 
+    padding: 10px; 
+    font-weight: 600; 
+    font-size: 14px; 
+}
 
 /* Детальная */
 .phone-detail { padding: 16px; }
 .phone-detail img { width: 100%; border-radius: 12px; margin-bottom: 16px; }
-.phone-detail h2 { font-size: 20px; margin-bottom: 8px; }
-.phone-detail .price { margin: 12px 0; font-size: 20px; }
+.phone-detail h2 { font-size: 20px; margin-bottom: 8px; color: #bb86fc; }
+.phone-detail p { margin-bottom: 12px; color: #ccc; }
+.phone-detail .price { font-size: 20px; margin: 12px 0; }
 .phone-detail ul { list-style: none; margin: 16px 0; }
 .phone-detail li { padding: 6px 0; font-size: 15px; }
-.buy-btn { width: 100%; background: #000; color: #fff; border: none; padding: 14px; border-radius: 12px; font-size: 17px; font-weight: 600; }
-.back-btn { background: none; border: none; font-size: 20px; margin-bottom: 16px; }
+.buy-btn { 
+    width: 100%; 
+    background: #bb86fc; 
+    color: #000; 
+    border: none; 
+    padding: 16px; 
+    border-radius: 12px; 
+    font-size: 18px; 
+    font-weight: 600; 
+    margin-top: 20px; 
+}
+.back-btn { background: none; border: none; font-size: 24px; color: #bb86fc; margin-bottom: 16px; }
+
+/* Корзина */
+.cart-icon { 
+    position: fixed; top: 16px; right: 16px; 
+    background: #bb86fc; color: #000; 
+    padding: 10px 14px; border-radius: 50%; 
+    font-size: 18px; z-index: 100; 
+}
+#cart-count { 
+    background: #fff; color: #000; 
+    border-radius: 50%; padding: 2px 6px; 
+    font-size: 12px; font-weight: 600; 
+}
+.modal { 
+    position: fixed; top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); 
+    background: #16213e; padding: 20px; 
+    border-radius: 16px; width: 90%; max-width: 340px; 
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5); z-index: 101; 
+}
+.modal h3 { color: #bb86fc; margin-bottom: 12px; }
+.modal button { 
+    background: #bb86fc; color: #000; 
+    padding: 12px; border-radius: 12px; 
+    font-weight: 600; width: 100%; 
+}
 
 /* Футер */
-.footer { text-align: center; padding: 20px 0; font-size: 13px; color: #666; border-top: 1px solid #eee; margin-top: 20px; }
+.footer { 
+    text-align: center; padding: 20px 0; 
+    font-size: 13px; color: #777; 
+    border-top: 1px solid #333; margin-top: 30px; 
+}
