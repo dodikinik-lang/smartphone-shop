@@ -4,33 +4,33 @@ tg.expand();
 
 const phones = {
     Samsung: [
-        { id: 1, name: "Galaxy A17 4/128GB", desc: "Бюджетный смартфон с 4 ГБ ОЗУ", img: "https://prim.shop.megafon.ru/upload/iblock/0a9/0a9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 15999, newPrice: 14999, specs: ["6.5\" PLS", "Helio G85", "50MP", "5000 mAh"] },  // Пример: фото A15
-        { id: 2, name: "Galaxy A17 8/256GB", desc: "Расширенная память и ОЗУ", img: "https://prim.shop.megafon.ru/upload/iblock/1a9/1a9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 20999, newPrice: 19999, specs: ["6.5\" PLS", "Helio G85", "50MP", "5000 mAh"] },
-        { id: 3, name: "Galaxy A26 6/128GB", desc: "Средний сегмент с AMOLED", img: "https://prim.shop.megafon.ru/upload/iblock/2a9/2a9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 22999, newPrice: 21999, specs: ["6.6\" Super AMOLED", "Exynos 1330", "48MP", "5000 mAh"] },
-        { id: 4, name: "Galaxy A26 8/256GB", desc: "Больше памяти и ОЗУ", img: "https://prim.shop.megafon.ru/upload/iblock/3a9/3a9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 25999, newPrice: 24999, specs: ["6.6\" Super AMOLED", "Exynos 1330", "48MP", "5000 mAh"] },
-        { id: 5, name: "Galaxy A36 8/128GB", desc: "Премиум A-серия", img: "https://prim.shop.megafon.ru/upload/iblock/4a9/4a9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 28999, newPrice: 27499, specs: ["6.7\" Super AMOLED", "Exynos 1380", "50MP OIS", "5000 mAh"] },
-        { id: 6, name: "Galaxy A36 8/256GB", desc: "Максимум памяти", img: "https://prim.shop.megafon.ru/upload/iblock/5a9/5a9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 32999, newPrice: 31499, specs: ["6.7\" Super AMOLED", "Exynos 1380", "50MP OIS", "5000 mAh"] },
-        { id: 7, name: "Galaxy A56 8/128GB", desc: "Флагманский A-серии", img: "https://prim.shop.megafon.ru/upload/iblock/6a9/6a9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 35999, newPrice: 34499, specs: ["6.7\" AMOLED 120Hz", "Exynos 1480", "50MP", "5000 mAh"] },
-        { id: 8, name: "Galaxy A56 8/256GB", desc: "Топовая конфигурация", img: "https://prim.shop.megafon.ru/upload/iblock/7a9/7a9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 39999, newPrice: 35499, specs: ["6.7\" AMOLED 120Hz", "Exynos 1480", "50MP", "5000 mAh"] }
+        { id: 1, name: "Galaxy A17 4/128GB", desc: "Бюджетный смартфон с 4 ГБ ОЗУ", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=400", oldPrice: 15999, newPrice: 14999, specs: ["6.5\" PLS", "Helio G85", "50MP", "5000 mAh"] },
+        { id: 2, name: "Galaxy A17 8/256GB", desc: "Расширенная память и ОЗУ", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400", oldPrice: 20999, newPrice: 19999, specs: ["6.5\" PLS", "Helio G85", "50MP", "5000 mAh"] },
+        { id: 3, name: "Galaxy A26 6/128GB", desc: "Средний сегмент с AMOLED", img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=400", oldPrice: 22999, newPrice: 21999, specs: ["6.6\" Super AMOLED", "Exynos 1330", "48MP", "5000 mAh"] },
+        { id: 4, name: "Galaxy A26 8/256GB", desc: "Больше памяти и ОЗУ", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400", oldPrice: 25999, newPrice: 24999, specs: ["6.6\" Super AMOLED", "Exynos 1330", "48MP", "5000 mAh"] },
+        { id: 5, name: "Galaxy A36 8/128GB", desc: "Премиум A-серия", img: "https://images.unsplash.com/photo-1590716156355-9ca3c2209db4?w=400", oldPrice: 28999, newPrice: 27499, specs: ["6.7\" Super AMOLED", "Exynos 1380", "50MP OIS", "5000 mAh"] },
+        { id: 6, name: "Galaxy A36 8/256GB", desc: "Максимум памяти", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400", oldPrice: 32999, newPrice: 31499, specs: ["6.7\" Super AMOLED", "Exynos 1380", "50MP OIS", "5000 mAh"] },
+        { id: 7, name: "Galaxy A56 8/128GB", desc: "Флагманский A-серии", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=400", oldPrice: 35999, newPrice: 34499, specs: ["6.7\" AMOLED 120Hz", "Exynos 1480", "50MP", "5000 mAh"] },
+        { id: 8, name: "Galaxy A56 8/256GB", desc: "Топовая конфигурация", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400", oldPrice: 39999, newPrice: 35499, specs: ["6.7\" AMOLED 120Hz", "Exynos 1480", "50MP", "5000 mAh"] }
     ],
     Honor: [
-        { id: 9, name: "X6C/128GB", desc: "Базовый X-серия", img: "https://prim.shop.megafon.ru/upload/iblock/8a9/8a9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 999, newPrice: 900, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"] },
-        { id: 10, name: "X6C/256GB", desc: "Расширенная версия", img: "https://prim.shop.megafon.ru/upload/iblock/9a9/9a9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 1199, newPrice: 1100, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"] },
-        { id: 11, name: "X7C/128GB", desc: "Улучшенная камера", img: "https://prim.shop.megafon.ru/upload/iblock/0b9/0b9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 1499, newPrice: 1400, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"] },
-        { id: 12, name: "X7C/256GB", desc: "Больше памяти", img: "https://prim.shop.megafon.ru/upload/iblock/1b9/1b9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 1799, newPrice: 1700, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"] },
-        { id: 13, name: "X8C/128GB", desc: "120Hz экран", img: "https://prim.shop.megafon.ru/upload/iblock/2b9/2b9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 1699, newPrice: 1600, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"] },
-        { id: 14, name: "X8C/256GB", desc: "Высокая производительность", img: "https://prim.shop.megafon.ru/upload/iblock/3b9/3b9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 1999, newPrice: 1900, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"] },
-        { id: 15, name: "X9C/256GB", desc: "Премиум X-серия", img: "https://prim.shop.megafon.ru/upload/iblock/4b9/4b9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 2799, newPrice: 2700, specs: ["6.78\" OLED 120Hz", "Snapdragon 8 Gen 2", "200MP", "5000 mAh"] },
-        { id: 16, name: "400 Lite/256GB", desc: "Лёгкая версия", img: "https://prim.shop.megafon.ru/upload/iblock/5b9/5b9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 2499, newPrice: 2400, specs: ["6.7\" AMOLED", "Dimensity 6020", "108MP", "5000 mAh"] },
-        { id: 17, name: "400/256GB", desc: "Стандартная модель", img: "https://prim.shop.megafon.ru/upload/iblock/6b9/6b9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 3699, newPrice: 3600, specs: ["6.78\" OLED", "Snapdragon 8 Gen 3", "50MP", "5300 mAh"] },
-        { id: 18, name: "400 Pro/256GB", desc: "Профессиональная версия", img: "https://prim.shop.megafon.ru/upload/iblock/7b9/7b9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 5999, newPrice: 5900, specs: ["6.8\" OLED 120Hz", "Snapdragon 8 Gen 3", "200MP", "5500 mAh"] }
+        { id: 9, name: "X6C/128GB", desc: "Базовый X-серия", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=400", oldPrice: 999, newPrice: 900, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"] },
+        { id: 10, name: "X6C/256GB", desc: "Расширенная версия", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400", oldPrice: 1199, newPrice: 1100, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"] },
+        { id: 11, name: "X7C/128GB", desc: "Улучшенная камера", img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=400", oldPrice: 1499, newPrice: 1400, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"] },
+        { id: 12, name: "X7C/256GB", desc: "Больше памяти", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400", oldPrice: 1799, newPrice: 1700, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"] },
+        { id: 13, name: "X8C/128GB", desc: "120Hz экран", img: "https://images.unsplash.com/photo-1590716156355-9ca3c2209db4?w=400", oldPrice: 1699, newPrice: 1600, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"] },
+        { id: 14, name: "X8C/256GB", desc: "Высокая производительность", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400", oldPrice: 1999, newPrice: 1900, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"] },
+        { id: 15, name: "X9C/256GB", desc: "Премиум X-серия", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=400", oldPrice: 2799, newPrice: 2700, specs: ["6.78\" OLED 120Hz", "Snapdragon 8 Gen 2", "200MP", "5000 mAh"] },
+        { id: 16, name: "400 Lite/256GB", desc: "Лёгкая версия", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400", oldPrice: 2499, newPrice: 2400, specs: ["6.7\" AMOLED", "Dimensity 6020", "108MP", "5000 mAh"] },
+        { id: 17, name: "400/256GB", desc: "Стандартная модель", img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=400", oldPrice: 3699, newPrice: 3600, specs: ["6.78\" OLED", "Snapdragon 8 Gen 3", "50MP", "5300 mAh"] },
+        { id: 18, name: "400 Pro/256GB", desc: "Профессиональная версия", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400", oldPrice: 5999, newPrice: 5900, specs: ["6.8\" OLED 120Hz", "Snapdragon 8 Gen 3", "200MP", "5500 mAh"] }
     ],
     Huawei: [
-        { id: 19, name: "nova Y63/128GB", desc: "Бюджетный nova", img: "https://prim.shop.megafon.ru/upload/iblock/8b9/8b9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 999, newPrice: 900, specs: ["6.52\" IPS", "Snapdragon 680", "50MP", "5000 mAh"] },
-        { id: 20, name: "nova Y73/256GB", desc: "Расширенная Y-серия", img: "https://prim.shop.megafon.ru/upload/iblock/9b9/9b9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 1499, newPrice: 1400, specs: ["6.75\" IPS 90Hz", "Snapdragon 680", "50MP", "5000 mAh"] },
-        { id: 21, name: "nova 14/256GB", desc: "Стильный дизайн", img: "https://prim.shop.megafon.ru/upload/iblock/0c9/0c9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 3399, newPrice: 3300, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"] },
-        { id: 22, name: "nova 14/512GB", desc: "Максимум памяти", img: "https://prim.shop.megafon.ru/upload/iblock/1c9/1c9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 3699, newPrice: 3600, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"] },
-        { id: 23, name: "nova 14 Pro/512GB", desc: "Про-версия с камерой", img: "https://prim.shop.megafon.ru/upload/iblock/2c9/2c9b7b7b7b7b7b7b7b7b7b7b7b7b7b7b.jpg", oldPrice: 4699, newPrice: 4600, specs: ["6.78\" OLED 120Hz", "Kirin 9000", "50MP переменная", "4500 mAh"] }
+        { id: 19, name: "nova Y63/128GB", desc: "Бюджетный nova", img: "https://images.unsplash.com/photo-1590716156355-9ca3c2209db4?w=400", oldPrice: 999, newPrice: 900, specs: ["6.52\" IPS", "Snapdragon 680", "50MP", "5000 mAh"] },
+        { id: 20, name: "nova Y73/256GB", desc: "Расширенная Y-серия", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400", oldPrice: 1499, newPrice: 1400, specs: ["6.75\" IPS 90Hz", "Snapdragon 680", "50MP", "5000 mAh"] },
+        { id: 21, name: "nova 14/256GB", desc: "Стильный дизайн", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=400", oldPrice: 3399, newPrice: 3300, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"] },
+        { id: 22, name: "nova 14/512GB", desc: "Максимум памяти", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400", oldPrice: 3699, newPrice: 3600, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"] },
+        { id: 23, name: "nova 14 Pro/512GB", desc: "Про-версия с камерой", img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=400", oldPrice: 4699, newPrice: 4600, specs: ["6.78\" OLED 120Hz", "Kirin 9000", "50MP переменная", "4500 mAh"] }
     ]
 };
 
@@ -85,7 +85,7 @@ function renderPhones(phoneList) {
     const list = document.getElementById('phones-list');
     list.innerHTML = phoneList.map(p => `
         <div class="phone-card" onclick="showPhone(${p.id})">
-            <img src="${p.img}" alt="${p.name}">
+            <img src="${p.img}" alt="${p.name}" loading="lazy">
             <h3>${p.name}</h3>
             <p>${p.desc}</p>
             <div class="price">
@@ -103,6 +103,7 @@ function showPhone(id) {
     document.getElementById('phones-list').classList.add('hidden');
     document.getElementById('phone-detail').classList.remove('hidden');
     document.getElementById('phone-img').src = currentPhone.img;
+    document.getElementById('phone-img').alt = currentPhone.name;
     document.getElementById('phone-name').textContent = currentPhone.name;
     document.getElementById('phone-desc').textContent = currentPhone.desc;
     document.getElementById('old-price').textContent = `${currentPhone.oldPrice.toLocaleString()} ₽`;
