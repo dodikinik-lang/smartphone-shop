@@ -4,39 +4,31 @@ tg.expand();
 
 const phones = {
     Samsung: [
-        { id: 1, name: "Galaxy S24", desc: "Флагман 2024", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=600", oldPrice: 800, newPrice: 640, specs: ["6.2\" AMOLED", "Snapdragon 8 Gen 3", "50MP", "4000 mAh"] },
-        { id: 2, name: "Galaxy A55", desc: "Бюджетный хит", img: "https://images.unsplash.com/photo-1590716156355-9ca3c2209db4?w=600", oldPrice: 450, newPrice: 399, specs: ["6.6\" AMOLED", "Exynos 1480", "50MP OIS", "5000 mAh"] },
-        { id: 3, name: "Galaxy Z Fold 6", desc: "Складной флагман", img: "https://images.unsplash.com/photo-1592750477365-2d0c5d0e52b9?w=600", oldPrice: 1800, newPrice: 1599, specs: ["7.6\" + 6.2\"", "Snapdragon 8 Gen 3", "50MP", "4400 mAh"] },
-        { id: 4, name: "Galaxy S23 FE", desc: "Баланс цены и качества", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", oldPrice: 600, newPrice: 529, specs: ["6.4\" AMOLED", "Exynos 2200", "50MP", "4500 mAh"] },
-        { id: 5, name: "Galaxy M34", desc: "Долгая батарея", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600", oldPrice: 300, newPrice: 259, specs: ["6.5\" PLS", "Exynos 1280", "50MP", "6000 mAh"] }
-    ],
-    Realme: [
-        { id: 6, name: "GT 6", desc: "Игровой флагман", img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600", oldPrice: 427, newPrice: 385, specs: ["6.78\" 120Hz", "Snapdragon 8s Gen 3", "50MP", "5500 mAh"] },
-        { id: 7, name: "12 Pro", desc: "120W зарядка", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=600", oldPrice: 350, newPrice: 319, specs: ["6.7\" AMOLED", "Dimensity 7050", "108MP", "5000 mAh"] },
-        { id: 8, name: "C65", desc: "Бюджетник", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600", oldPrice: 180, newPrice: 159, specs: ["6.72\" 90Hz", "Helio G85", "50MP", "5000 mAh"] },
-        { id: 9, name: "Narzo 70", desc: "Для молодёжи", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600", oldPrice: 280, newPrice: 249, specs: ["6.67\" 120Hz", "Dimensity 6020", "64MP", "5000 mAh"] },
-        { id: 10, name: "11 Pro+", desc: "200MP камера", img: "https://images.unsplash.com/photo-1590716156355-9ca3c2209db4?w=600", oldPrice: 400, newPrice: 369, specs: ["6.7\" AMOLED", "Dimensity 7050", "200MP", "5000 mAh"] }
+        { id: 1, name: "Galaxy A17 /128GB", desc: "Базовая модель A-серии", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=600", oldPrice: 1599, newPrice: 1500, specs: ["6.5\" PLS LCD", "Helio G85", "50MP основная", "5000 mAh"] },
+        { id: 2, name: "Galaxy A16 /256GB", desc: "Расширенная память", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", oldPrice: 2099, newPrice: 2000, specs: ["6.6\" Super AMOLED", "Exynos 1330", "48MP", "5000 mAh"] },
+        { id: 3, name: "Galaxy A26 /256GB", desc: "Средний сегмент", img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600", oldPrice: 2599, newPrice: 2500, specs: ["6.7\" AMOLED 90Hz", "Snapdragon 680", "64MP", "5000 mAh"] },
+        { id: 4, name: "Galaxy A36 /256GB", desc: "Премиум A-серия", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600", oldPrice: 2899, newPrice: 2800, specs: ["6.7\" Super AMOLED", "Exynos 1380", "50MP OIS", "5000 mAh"] },
+        { id: 5, name: "Galaxy A56 /256GB", desc: "Высокая производительность", img: "https://images.unsplash.com/photo-1590716156355-9ca3c2209db4?w=600", oldPrice: 3599, newPrice: 3500, specs: ["6.7\" AMOLED 120Hz", "Exynos 1480", "50MP", "5000 mAh"] },
+        { id: 6, name: "Galaxy A66 /256GB", desc: "Флагман A-линейки", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600", oldPrice: 3999, newPrice: 3900, specs: ["6.8\" Dynamic AMOLED", "Snapdragon 7 Gen 1", "108MP", "5000 mAh"] }
     ],
     Honor: [
-        { id: 11, name: "Magic 6 Pro", desc: "Премиум флагман", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600", oldPrice: 720, newPrice: 648, specs: ["6.8\" OLED", "Snapdragon 8 Gen 3", "50MP", "5600 mAh"] },
-        { id: 12, name: "200", desc: "Тонкий дизайн", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=600", oldPrice: 650, newPrice: 599, specs: ["6.7\" OLED", "Snapdragon 8 Gen 2", "50MP", "5000 mAh"] },
-        { id: 13, name: "X9b", desc: "Прочный корпус", img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600", oldPrice: 320, newPrice: 289, specs: ["6.78\" 120Hz", "Snapdragon 6 Gen 1", "108MP", "5800 mAh"] },
-        { id: 14, name: "90", desc: "Баланс", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", oldPrice: 500, newPrice: 459, specs: ["6.7\" AMOLED", "Snapdragon 7 Gen 1", "200MP", "5000 mAh"] },
-        { id: 15, name: "Play 40", desc: "Для игр", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600", oldPrice: 250, newPrice: 219, specs: ["6.56\" 90Hz", "Dimensity 6020", "50MP", "5200 mAh"] }
+        { id: 7, name: "X6C/128GB", desc: "Базовый X-серия", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=600", oldPrice: 999, newPrice: 900, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"] },
+        { id: 8, name: "X6C/256GB", desc: "Расширенная версия", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", oldPrice: 1199, newPrice: 1100, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"] },
+        { id: 9, name: "X7C/128GB", desc: "Улучшенная камера", img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600", oldPrice: 1499, newPrice: 1400, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"] },
+        { id: 10, name: "X7C/256GB", desc: "Больше памяти", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600", oldPrice: 1799, newPrice: 1700, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"] },
+        { id: 11, name: "X8C/128GB", desc: "120Hz экран", img: "https://images.unsplash.com/photo-1590716156355-9ca3c2209db4?w=600", oldPrice: 1699, newPrice: 1600, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"] },
+        { id: 12, name: "X8C/256GB", desc: "Высокая производительность", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600", oldPrice: 1999, newPrice: 1900, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"] },
+        { id: 13, name: "X9C/256GB", desc: "Премиум X-серия", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=600", oldPrice: 2799, newPrice: 2700, specs: ["6.78\" OLED 120Hz", "Snapdragon 8 Gen 2", "200MP", "5000 mAh"] },
+        { id: 14, name: "400 Lite/256GB", desc: "Лёгкая версия", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", oldPrice: 2499, newPrice: 2400, specs: ["6.7\" AMOLED", "Dimensity 6020", "108MP", "5000 mAh"] },
+        { id: 15, name: "400/256GB", desc: "Стандартная модель", img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600", oldPrice: 3699, newPrice: 3600, specs: ["6.78\" OLED", "Snapdragon 8 Gen 3", "50MP", "5300 mAh"] },
+        { id: 16, name: "400 Pro/256GB", desc: "Профессиональная версия", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600", oldPrice: 5999, newPrice: 5900, specs: ["6.8\" OLED 120Hz", "Snapdragon 8 Gen 3", "200MP", "5500 mAh"] }
     ],
     Huawei: [
-        { id: 16, name: "Pura 70 Ultra", desc: "Камера 1\"", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600", oldPrice: 1381, newPrice: 1243, specs: ["6.8\" OLED", "Kirin 9010", "50MP", "5200 mAh"] },
-        { id: 17, name: "Mate 60 Pro", desc: "Флагман", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=600", oldPrice: 1200, newPrice: 1099, specs: ["6.82\" OLED", "Kirin 9000S", "50MP", "5000 mAh"] },
-        { id: 18, name: "Nova 12", desc: "Стильный", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600", oldPrice: 450, newPrice: 409, specs: ["6.7\" OLED", "Snapdragon 778G", "60MP", "4000 mAh"] },
-        { id: 19, name: "Enjoy 70", desc: "Бюджет", img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600", oldPrice: 220, newPrice: 199, specs: ["6.75\" 90Hz", "Kirin 710A", "48MP", "6000 mAh"] },
-        { id: 20, name: "P60 Pro", desc: "Камера", img: "https://images.unsplash.com/photo-1590716156355-9ca3c2209db4?w=600", oldPrice: 900, newPrice: 829, specs: ["6.67\" OLED", "Snapdragon 8+ Gen 1", "48MP", "4815 mAh"] }
-    ],
-    Tecno: [
-        { id: 21, name: "Camon 30 Premier", desc: "Камера 50MP", img: "https://images.unsplash.com/photo-1590716156355-9ca3c2209db4?w=600", oldPrice: 421, newPrice: 379, specs: ["6.77\" AMOLED", "Dimensity 8200", "50MP", "5000 mAh"] },
-        { id: 22, name: "Phantom V Fold", desc: "Складной", img: "https://images.unsplash.com/photo-1592750477365-2d0c5d0e52b9?w=600", oldPrice: 1100, newPrice: 999, specs: ["7.85\" + 6.42\"", "Dimensity 9000+", "50MP", "5000 mAh"] },
-        { id: 23, name: "Spark 20 Pro", desc: "Бюджет", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600", oldPrice: 200, newPrice: 179, specs: ["6.78\" 120Hz", "Helio G99", "108MP", "5000 mAh"] },
-        { id: 24, name: "Pova 6", desc: "Игровой", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", oldPrice: 280, newPrice: 249, specs: ["6.78\" 120Hz", "Dimensity 6080", "108MP", "6000 mAh"] },
-        { id: 25, name: "Pop 8", desc: "Супер бюджет", img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600", oldPrice: 130, newPrice: 109, specs: ["6.6\" 90Hz", "Unisoc T606", "13MP", "5000 mAh"] }
+        { id: 17, name: "nova Y63/128GB", desc: "Бюджетный nova", img: "https://images.unsplash.com/photo-1590716156355-9ca3c2209db4?w=600", oldPrice: 999, newPrice: 900, specs: ["6.52\" IPS", "Snapdragon 680", "50MP", "5000 mAh"] },
+        { id: 18, name: "nova Y73/256GB", desc: "Расширенная Y-серия", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600", oldPrice: 1499, newPrice: 1400, specs: ["6.75\" IPS 90Hz", "Snapdragon 680", "50MP", "5000 mAh"] },
+        { id: 19, name: "nova 14/256GB", desc: "Стильный дизайн", img: "https://images.unsplash.com/photo-1592899679516-9c8a283e104a?w=600", oldPrice: 3399, newPrice: 3300, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"] },
+        { id: 20, name: "nova 14/512GB", desc: "Максимум памяти", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", oldPrice: 3699, newPrice: 3600, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"] },
+        { id: 21, name: "nova 14 Pro/512GB", desc: "Про-версия с камерой", img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600", oldPrice: 4699, newPrice: 4600, specs: ["6.78\" OLED 120Hz", "Kirin 9000", "50MP переменная", "4500 mAh"] }
     ]
 };
 
@@ -44,7 +36,7 @@ let cart = [];
 let currentPhone = null;
 let currentBrand = '';
 
-// Баннер смена
+// Баннер смена (остаётся как раньше)
 setInterval(() => {
     const slides = document.querySelectorAll('.slide');
     let active = document.querySelector('.slide.active');
@@ -95,8 +87,8 @@ function renderPhones(phoneList) {
             <h3>${p.name}</h3>
             <p>${p.desc}</p>
             <div class="price">
-                <span class="old-price">$${p.oldPrice}</span>
-                <span class="new-price">$${p.newPrice}</span>
+                <span class="old-price">${p.oldPrice} ₽</span>
+                <span class="new-price">${p.newPrice} ₽</span>
             </div>
             <button onclick="event.stopPropagation(); addToCart(${p.id})" class="buy-btn-card">Купить</button>
         </div>
@@ -111,8 +103,8 @@ function showPhone(id) {
     document.getElementById('phone-img').src = currentPhone.img;
     document.getElementById('phone-name').textContent = currentPhone.name;
     document.getElementById('phone-desc').textContent = currentPhone.desc;
-    document.getElementById('old-price').textContent = `$${currentPhone.oldPrice}`;
-    document.getElementById('new-price').textContent = `$${currentPhone.newPrice}`;
+    document.getElementById('old-price').textContent = `${currentPhone.oldPrice} ₽`;
+    document.getElementById('new-price').textContent = `${currentPhone.newPrice} ₽`;
     document.getElementById('phone-specs').innerHTML = currentPhone.specs.map(s => `<li>${s}</li>`).join('');
 }
 
@@ -138,13 +130,13 @@ document.getElementById('cart-icon').onclick = () => {
 };
 
 document.getElementById('checkout-btn').onclick = () => {
-    const order = cart.map(p => `${p.name} — $${p.newPrice}`).join('\n');
+    const order = cart.map(p => `${p.name} — ${p.newPrice} ₽`).join('\n');
     tg.sendData(`Заказ:\n${order}`);
     tg.close();
 };
 
 function updateCart() {
     document.getElementById('cart-count').textContent = cart.length;
-    document.getElementById('cart-items').innerHTML = cart.map(p => `<li>${p.name} — $${p.newPrice}</li>`).join('');
+    document.getElementById('cart-items').innerHTML = cart.map(p => `<li>${p.name} — ${p.newPrice} ₽</li>`).join('');
 }
 updateCart();
