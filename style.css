@@ -136,3 +136,53 @@ body {
     font-size: 13px; color: #777; 
     border-top: 1px solid #333; margin-top: 30px; 
 }
+/* Описание в карточке — не обрезается, красиво */
+.phone-card p.desc {
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.4;
+    margin: 6px 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Цена — красиво и с пробелами */
+.phone-card .price {
+    margin: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.phone-card .old-price {
+    font-size: 12px;
+    color: #aaa;
+    text-decoration: line-through;
+}
+
+.phone-card .new-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Кнопка "Купить" */
+.phone-card .buy-btn-card {
+    margin: 8px 12px;
+    padding: 8px 16px;
+    background: #00cc00;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.phone-card .buy-btn-card:hover {
+    background: #00aa00;
+}
