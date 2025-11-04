@@ -10,12 +10,6 @@
 <body>
     <div class="container">
 
-        <!-- Заголовок -->
-        <header class="header">
-    <h1>СмартПлощадка</h1>
-    <p>Продажа смартфонов с быстрой доставкой по России</p>
-</header>
-
         <!-- Корзина -->
         <div id="cart-icon" class="cart-icon">🛒 <span id="cart-count">0</span></div>
         <div id="cart-modal" class="modal hidden">
@@ -24,22 +18,42 @@
             <button id="checkout-btn">Оформить заказ</button>
         </div>
 
-        <!-- Каталог -->
-        <main id="catalog" class="catalog">
-            <div id="phones-list" class="phones-grid"></div>
-        </main>
+        <!-- Баннер -->
+        <div id="banner" class="banner">
+            <div class="slide active">🔥 Galaxy S24 — скидка 20%!</div>
+            <div class="slide">📸 Pura 70 Ultra — камера 1"!</div>
+            <div class="slide">🎁 Купи Honor — чехол в подарок!</div>
+        </div>
+
+        <!-- Поиск -->
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Поиск смартфона..." oninput="searchPhones()">
+        </div>
+
+        <!-- Бренды -->
+        <div id="brands" class="brands-grid">
+            <button onclick="showBrand('Samsung')" class="brand-btn">Samsung</button>
+            <button onclick="showBrand('Realme')" class="brand-btn">Realme</button>
+            <button onclick="showBrand('Honor')" class="brand-btn">Honor</button>
+            <button onclick="showBrand('Huawei')" class="brand-btn">Huawei</button>
+            <button onclick="showBrand('Tecno')" class="brand-btn">Tecno</button>
+        </div>
+
+        <!-- Список смартфонов -->
+        <div id="phones-list" class="phones-grid hidden"></div>
 
         <!-- Детальная страница -->
         <div id="phone-detail" class="phone-detail hidden">
-            <button onclick="backToCatalog()" class="back-btn">← Назад</button>
+            <button onclick="backToBrands()" class="back-btn">← Назад</button>
             <img id="phone-img" alt="">
             <h2 id="phone-name"></h2>
+            <p id="phone-desc"></p>
             <div class="price">
                 <span class="old-price" id="old-price"></span>
                 <span class="new-price" id="new-price"></span>
             </div>
             <ul id="phone-specs"></ul>
-            <button id="add-to-cart" class="buy-btn">Купить</button>
+            <button onclick="addToCart(currentPhone)" class="buy-btn">Купить</button>
         </div>
 
         <!-- Футер -->
@@ -52,4 +66,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
