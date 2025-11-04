@@ -14,23 +14,23 @@ const phones = {
         { id: 8, name: "Galaxy A56 8/256GB", desc: "Топовая конфигурация", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a56-2.jpg", oldPrice: 39999, newPrice: 35499, specs: ["6.7\" AMOLED 120Hz", "Exynos 1480", "50MP", "5000 mAh"] }
     ],
     Honor: [
-        { id: 9, name: "X6C/128GB", desc: "Базовый X-серия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x6c-1.jpg", oldPrice: 999, newPrice: 900, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"] },
-        { id: 10, name: "X6C/256GB", desc: "Расширенная версия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x6c-2.jpg", oldPrice: 1199, newPrice: 1100, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"] },
-        { id: 11, name: "X7C/128GB", desc: "Улучшенная камера", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x7c-1.jpg", oldPrice: 1499, newPrice: 1400, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"] },
-        { id: 12, name: "X7C/256GB", desc: "Больше памяти", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x7c-2.jpg", oldPrice: 1799, newPrice: 1700, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"] },
-        { id: 13, name: "X8C/128GB", desc: "120Hz экран", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x8c-1.jpg", oldPrice: 1699, newPrice: 1600, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"] },
-        { id: 14, name: "X8C/256GB", desc: "Высокая производительность", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x8c-2.jpg", oldPrice: 1999, newPrice: 1900, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"] },
-        { id: 15, name: "X9C/256GB", desc: "Премиум X-серия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x9c-1.jpg", oldPrice: 2799, newPrice: 2700, specs: ["6.78\" OLED 120Hz", "Snapdragon 8 Gen 2", "200MP", "5000 mAh"] },
-        { id: 16, name: "400 Lite/256GB", desc: "Лёгкая версия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-lite-1.jpg", oldPrice: 2499, newPrice: 2400, specs: ["6.7\" AMOLED", "Dimensity 6020", "108MP", "5000 mAh"] },
-        { id: 17, name: "400/256GB", desc: "Стандартная модель", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-1.jpg", oldPrice: 3699, newPrice: 3600, specs: ["6.78\" OLED", "Snapdragon 8 Gen 3", "50MP", "5300 mAh"] },
-        { id: 18, name: "400 Pro/256GB", desc: "Профессиональная версия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-pro-1.jpg", oldPrice: 5999, newPrice: 5900, specs: ["6.8\" OLED 120Hz", "Snapdragon 8 Gen 3", "200MP", "5500 mAh"] }
+        { id: 9, name: "X6C 6/128GB", desc: "Базовый X-серия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x6c-1.jpg", oldPrice: 999, newPrice: 900, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"] },
+        { id: 10, name: "X6C 6/256GB", desc: "Расширенная версия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x6c-2.jpg", oldPrice: 1199, newPrice: 1100, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"] },
+        { id: 11, name: "X7C 6/128GB", desc: "Улучшенная камера", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x7c-1.jpg", oldPrice: 1499, newPrice: 1400, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"] },
+        { id: 12, name: "X7C 8/256GB", desc: "Больше памяти", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x7c-2.jpg", oldPrice: 1799, newPrice: 1700, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"] },
+        { id: 13, name: "X8C 8/128GB", desc: "120Hz экран", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x8c-1.jpg", oldPrice: 1699, newPrice: 1600, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"] },
+        { id: 14, name: "X8C 8/256GB", desc: "Высокая производительность", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x8c-2.jpg", oldPrice: 1999, newPrice: 1900, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"] },
+        { id: 15, name: "X9C 8/256GB", desc: "Премиум X-серия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x9c-1.jpg", oldPrice: 2799, newPrice: 2700, specs: ["6.78\" OLED 120Hz", "Snapdragon 8 Gen 2", "200MP", "5000 mAh"] },
+        { id: 16, name: "400 Lite 8/256GB", desc: "Лёгкая версия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-lite-1.jpg", oldPrice: 2499, newPrice: 2400, specs: ["6.7\" AMOLED", "Dimensity 6020", "108MP", "5000 mAh"] },
+        { id: 17, name: "400 8/256GB", desc: "Стандартная модель", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-1.jpg", oldPrice: 3699, newPrice: 3600, specs: ["6.78\" OLED", "Snapdragon 8 Gen 3", "50MP", "5300 mAh"] },
+        { id: 18, name: "400 Pro 12/256GB", desc: "Профессиональная версия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-pro-1.jpg", oldPrice: 5999, newPrice: 5900, specs: ["6.8\" OLED 120Hz", "Snapdragon 8 Gen 3", "200MP", "5500 mAh"] }
     ],
     Huawei: [
-        { id: 19, name: "nova Y63/128GB", desc: "Бюджетный nova", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-y63-1.jpg", oldPrice: 999, newPrice: 900, specs: ["6.52\" IPS", "Snapdragon 680", "50MP", "5000 mAh"] },
-        { id: 20, name: "nova Y73/256GB", desc: "Расширенная Y-серия", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-y73-1.jpg", oldPrice: 1499, newPrice: 1400, specs: ["6.75\" IPS 90Hz", "Snapdragon 680", "50MP", "5000 mAh"] },
-        { id: 21, name: "nova 14/256GB", desc: "Стильный дизайн", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-1.jpg", oldPrice: 3399, newPrice: 3300, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"] },
-        { id: 22, name: "nova 14/512GB", desc: "Максимум памяти", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-2.jpg", oldPrice: 3699, newPrice: 3600, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"] },
-        { id: 23, name: "nova 14 Pro/512GB", desc: "Про-версия с камерой", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-pro-1.jpg", oldPrice: 4699, newPrice: 4600, specs: ["6.78\" OLED 120Hz", "Kirin 9000", "50MP переменная", "4500 mAh"] }
+        { id: 19, name: "nova Y63 4/128GB", desc: "Бюджетный nova", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-y63-1.jpg", oldPrice: 999, newPrice: 900, specs: ["6.52\" IPS", "Snapdragon 680", "50MP", "5000 mAh"] },
+        { id: 20, name: "nova Y73 8/256GB", desc: "Расширенная Y-серия", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-y73-1.jpg", oldPrice: 1499, newPrice: 1400, specs: ["6.75\" IPS 90Hz", "Snapdragon 680", "50MP", "5000 mAh"] },
+        { id: 21, name: "nova 14 12/256GB", desc: "Стильный дизайн", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-1.jpg", oldPrice: 3399, newPrice: 3300, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"] },
+        { id: 22, name: "nova 14 12/512GB", desc: "Максимум памяти", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-2.jpg", oldPrice: 3699, newPrice: 3600, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"] },
+        { id: 23, name: "nova 14 Pro 12/512GB", desc: "Про-версия с камерой", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-pro-1.jpg", oldPrice: 4699, newPrice: 4600, specs: ["6.78\" OLED 120Hz", "Kirin 9000", "50MP переменная", "4500 mAh"] }
     ]
 };
 
@@ -143,3 +143,4 @@ function updateCart() {
     document.getElementById('cart-items').innerHTML = cart.map(p => `<li>${p.name} — ${p.newPrice.toLocaleString()} ₽</li>`).join('');
 }
 updateCart();
+
