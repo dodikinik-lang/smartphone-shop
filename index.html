@@ -1,66 +1,78 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>СмартПлощадка</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>МегаФон — Смартфоны</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <!-- Баннер -->
+    <div class="banner">
+        <div class="slide active"><img src="https://via.placeholder.com/800x200/00cc00/ffffff?text=Скидки+до+5000+₽" alt="Баннер 1"></div>
+        <div class="slide"><img src="https://via.placeholder.com/800x200/0099cc/ffffff?text=Новинки+2025" alt="Баннер 2"></div>
+        <div class="slide"><img src="https://via.placeholder.com/800x200/cc6600/ffffff?text=Рассрочка+0%" alt="Баннер 3"></div>
+    </div>
 
-        <!-- Корзина -->
-        <div id="cart-icon" class="cart-icon">🛒 <span id="cart-count">0</span></div>
-        <div id="cart-modal" class="modal hidden">
+    <!-- Поиск -->
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Поиск по названию..." oninput="searchPhones()" />
+    </div>
+
+    <!-- Бренды -->
+    <div id="brands" class="brands-grid">
+        <div class="brand-card" onclick="showBrand('Samsung')">
+            <img src="https://fdn2.gsmarena.com/imgroot/static/logos/samsung-logo.png" alt="Samsung" />
+            <h3>Samsung</h3>
+        </div>
+        <div class="brand-card" onclick="showBrand('Honor')">
+            <img src="https://fdn2.gsmarena.com/imgroot/static/logos/honor-logo.png" alt="Honor" />
+            <h3>Honor</h3>
+        </div>
+        <div class="brand-card" onclick="showBrand('Huawei')">
+            <img src="https://fdn2.gsmarena.com/imgroot/static/logos/huawei-logo.png" alt="Huawei" />
+            <h3>Huawei</h3>
+        </div>
+    </div>
+
+    <!-- Список смартфонов -->
+    <div id="phones-list" class="phones-grid hidden"></div>
+
+    <!-- Детальная страница -->
+    <div id="phone-detail" class="phone-detail hidden">
+        <button onclick="backToBrands()" class="back-btn">← Назад</button>
+        
+        <!-- Галерея -->
+        <div class="gallery-modal hidden">
+            <button onclick="closeGallery()" class="gallery-close">×</button>
+            <div class="gallery-container">
+                <div class="gallery-slides" id="gallery-slides"></div>
+                <button onclick="prevSlide()" class="gallery-prev">❮</button>
+                <button onclick="nextSlide()" class="gallery-next">❯</button>
+            </div>
+        </div>
+        
+        <img id="phone-img" alt="" onclick="openGallery()" loading="lazy" />
+        <h2 id="phone-name"></h2>
+        <p id="phone-desc"></p>
+        <div class="price">
+            <span class="old-price" id="old-price"></span>
+            <span class="new-price" id="new-price"></span>
+        </div>
+        <ul id="phone-specs"></ul>
+        <button onclick="addToCart(currentPhone)" class="buy-btn">Купить</button>
+    </div>
+
+    <!-- Корзина -->
+    <div id="cart-icon">🛒 <span id="cart-count">0</span></div>
+    <div id="cart-modal" class="cart-modal hidden">
+        <div class="cart-content">
             <h3>Корзина</h3>
             <ul id="cart-items"></ul>
-            <button id="checkout-btn">Оформить заказ</button>
+            <button id="checkout-btn" class="buy-btn">Оформить заказ</button>
+            <button onclick="document.getElementById('cart-modal').classList.add('hidden')" class="close-btn">Закрыть</button>
         </div>
-
-        <!-- Баннер -->
-        <div id="banner" class="banner">
-            <div class="slide active">🔥 Galaxy S24 — скидка 20%!</div>
-            <div class="slide">📸 Pura 70 Ultra — камера 1"!</div>
-            <div class="slide">🎁 Купи Honor — чехол в подарок!</div>
-        </div>
-
-        <!-- Поиск -->
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Поиск смартфона..." oninput="searchPhones()">
-        </div>
-
-        <!-- Бренды -->
-        <div id="brands" class="brands-grid">
-            <button onclick="showBrand('Samsung')" class="brand-btn">Samsung</button>
-            <button onclick="showBrand('Realme')" class="brand-btn">Realme</button>
-            <button onclick="showBrand('Honor')" class="brand-btn">Honor</button>
-            <button onclick="showBrand('Huawei')" class="brand-btn">Huawei</button>
-            <button onclick="showBrand('Tecno')" class="brand-btn">Tecno</button>
-        </div>
-
-        <!-- Список смартфонов -->
-        <div id="phones-list" class="phones-grid hidden"></div>
-
-        <!-- Детальная страница -->
-        <div id="phone-detail" class="phone-detail hidden">
-            <button onclick="backToBrands()" class="back-btn">← Назад</button>
-            <img id="phone-img" alt="">
-            <h2 id="phone-name"></h2>
-            <p id="phone-desc"></p>
-            <div class="price">
-                <span class="old-price" id="old-price"></span>
-                <span class="new-price" id="new-price"></span>
-            </div>
-            <ul id="phone-specs"></ul>
-            <button onclick="addToCart(currentPhone)" class="buy-btn">Купить</button>
-        </div>
-
-        <!-- Футер -->
-        <footer class="footer">
-            <p>ИП Голиков Никита Сергеевич</p>
-            <p>ИНН: 253502067548</p>
-        </footer>
     </div>
 
     <script src="script.js"></script>
