@@ -1,12 +1,12 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fff; color: #000; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; color: #000; }
 .app { max-width: 480px; margin: 0 auto; padding: 0; }
 .hidden { display: none; }
 
 /* ШАПКА */
 .header {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 16px; border-bottom: 1px solid #eee; position: relative;
+    padding: 12px 16px; border-bottom: 1px solid #eee; background: white;
 }
 .catalog-btn {
     background: #2ecc71; color: white; border: none; padding: 10px 16px;
@@ -26,13 +26,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 }
 
 /* ПОИСК */
-.search-bar { padding: 12px 16px; }
+.search-bar { padding: 12px 16px; background: white; }
 .search-bar input {
     width: 100%; padding: 12px; font-size: 16px; border: 1px solid #ddd;
     border-radius: 8px; outline: none;
 }
 
-/* ВЫДВИЖНАЯ ПАНЕЛЬ */
+/* БОКОВАЯ ПАНЕЛЬ */
 .sidebar {
     position: fixed; top: 0; left: -280px; width: 280px; height: 100%;
     background: white; box-shadow: 2px 0 10px rgba(0,0,0,0.1); z-index: 200;
@@ -54,8 +54,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     background: rgba(0,0,0,0.5); z-index: 199;
 }
 
-/* КОНТЕНТ */
-.phones-container { padding: 16px; }
+/* КАРТОЧКИ — КАК НА СКРИНЕ */
+.phones-container { padding: 16px; background: #f8f9fa; }
 .phones-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
 }
@@ -63,37 +63,54 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     .phones-grid { grid-template-columns: 1fr; }
 }
 .phone-card {
-    background: white; border: 1px solid #eee; border-radius: 12px;
-    overflow: hidden; cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    transition: transform 0.2s;
+    background: white; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
-.phone-card:hover { transform: translateY(-4px); }
-.phone-card img { width: 100%; height: 140px; object-fit: cover; }
-.phone-card h3 { padding: 8px; font-size: 14px; text-align: center; }
-.phone-card .price {
-    padding: 0 8px 8px; text-align: center; font-size: 14px;
+.phone-card:hover {
+    transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
-.phone-card .old-price { text-decoration: line-through; color: #999; }
-.phone-card .new-price { font-weight: bold; color: #2ecc71; }
-.phone-card .buy-btn {
-    width: 100%; background: #2ecc71; color: white; border: none;
-    padding: 10px; font-size: 14px; cursor: pointer;
+.phone-images {
+    display: flex; height: 160px; background: #f0f2f5;
 }
+.phone-images img {
+    width: 50%; height: 100%; object-fit: cover;
+}
+.phone-card h3 {
+    padding: 12px 12px 4px; font-size: 15px; font-weight: 600; line-height: 1.3;
+}
+.phone-card .desc {
+    padding: 0 12px 8px; font-size: 13px; color: #555; line-height: 1.3;
+}
+.price {
+    padding: 0 12px 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.old-price {
+    font-size: 13px; color: #999; text-decoration: line-through;
+}
+.new-price {
+    font-size: 18px; font-weight: bold; color: #000;
+}
+.buy-btn {
+    width: 100%; background: #007bff; color: white; border: none;
+    padding: 12px; font-size: 15px; font-weight: 600;
+    border-radius: 0 0 16px 16px; cursor: pointer;
+}
+.buy-btn:hover { background: #0056b3; }
 
 /* ДЕТАЛИ */
-.phone-detail { padding: 16px; }
+.phone-detail { padding: 16px; background: white; }
 .phone-detail img { width: 100%; height: 250px; object-fit: contain; border-radius: 12px; margin-bottom: 16px; }
 .phone-detail h2 { margin-bottom: 8px; font-size: 20px; }
 .phone-detail p { margin-bottom: 12px; color: #666; }
 .phone-detail .price { margin: 12px 0; font-size: 18px; }
 .phone-detail .old-price { text-decoration: line-through; color: #999; margin-right: 8px; }
-.phone-detail .new-price { color: #2ecc71; font-weight: bold; }
+.phone-detail .new-price { color: #000; font-weight: bold; }
 .phone-detail ul { margin: 12px 0; padding-left: 20px; }
 .phone-detail li { margin: 4px 0; }
-.buy-btn { width: 100%; background: #2ecc71; color: white; border: none; padding: 16px; font-size: 18px; border-radius: 12px; cursor: pointer; margin-top: 16px; }
 .back-btn { background: none; border: none; font-size: 18px; color: #666; margin-bottom: 16px; cursor: pointer; }
 
-/* МОДАЛЬНОЕ ОКНО КОРЗИНЫ */
+/* КОРЗИНА */
 .modal {
     position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
     background: white; padding: 20px; border-radius: 12px; width: 90%; max-width: 340px;
@@ -107,5 +124,5 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 /* ФУТЕР */
 .footer {
     text-align: center; padding: 20px 16px; color: #666; font-size: 14px;
-    border-top: 1px solid #eee; margin-top: 32px;
+    border-top: 1px solid #eee; margin-top: 32px; background: white;
 }
