@@ -55,11 +55,26 @@ body {
 .brand-card:hover { transform: translateY(-4px); }
 .brand-card img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px; }
 
-/* Список смартфонов */
+/* Список смартфонов — 2 ряда на больших экранах */
 .phones-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
+    padding: 0 8px;
+}
+
+/* 2 колонки на планшетах и ПК */
+@media (min-width: 600px) {
+    .phones-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 3 колонки на больших экранах (опционально) */
+@media (min-width: 900px) {
+    .phones-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 .phone-card {
     background: white;
@@ -299,3 +314,4 @@ body {
 
 /* Утилиты */
 .hidden { display: none !important; }
+
