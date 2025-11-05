@@ -324,3 +324,4 @@ function updateCart() {
     document.getElementById('cart-items').innerHTML = cart.map(p => `<li>${p.name} — ${p.newPrice.toLocaleString()} ₽</li>`).join('');
 }
 updateCart();
+
