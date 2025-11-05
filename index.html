@@ -9,40 +9,62 @@
 </head>
 <body>
     <div class="app">
-        <!-- Заголовок -->
+
+        <!-- ШАПКА: Баннер + Кнопка Каталог + Корзина -->
         <header class="header">
-            <h1>СмартПлощадка</h1>
-            <p>Продажа смартфонов с быстрой доставкой</p>
+            <button id="catalog-btn" class="catalog-btn">Каталог</button>
+            <div class="banner" onclick="tg.openLink('https://t.me/DigitalRetail_bot')">
+                <img src="https://via.placeholder.com/800x100/00cc00/ffffff?text=Скидки+до+30%25+на+все+смартфоны!" alt="Реклама">
+            </div>
+            <div id="cart-icon" class="cart-icon">Корзина <span id="cart-count">0</span></div>
         </header>
 
-        <!-- Корзина -->
-        <div id="cart-icon" class="cart-icon">Корзина <span id="cart-count">0</span></div>
-        <div id="cart-modal" class="modal hidden">
-            <h3>Корзина</h3>
-            <ul id="cart-items"></ul>
-            <button id="checkout-btn">Оформить заказ</button>
+        <!-- ПОИСК -->
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Поиск по магазину..." oninput="searchPhones()">
         </div>
 
-        <!-- Каталог -->
-        <main id="catalog" class="catalog">
+        <!-- ВЫДВИЖНАЯ ПАНЕЛЬ КАТАЛОГА -->
+        <div id="sidebar" class="sidebar">
+            <button onclick="closeSidebar()" class="close-sidebar">×</button>
+            <h3>Каталог</h3>
+            <ul>
+                <li onclick="showCategory('all')">Все смартфоны</li>
+                <li onclick="showBrand('Samsung')">Samsung</li>
+                <li onclick="showBrand('Honor')">Honor</li>
+                <li onclick="showBrand('Huawei')">Huawei</li>
+            </ul>
+        </div>
+        <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
+        <!-- КОНТЕНТ: СМАРТФОНЫ -->
+        <main id="phones-container" class="phones-container">
             <div id="phones-list" class="phones-grid"></div>
         </main>
 
-        <!-- Детальная страница -->
+        <!-- ДЕТАЛИ -->
         <div id="phone-detail" class="phone-detail hidden">
-            <button onclick="backToCatalog()" class="back-btn">← Назад</button>
-            <img id="phone-img" alt="Фото смартфона">
+            <button onclick="backToList()" class="back-btn">← Назад</button>
+            <img id="phone-img" alt="">
             <h2 id="phone-name"></h2>
             <p id="phone-desc"></p>
-            <div class="price-section">
+            <div class="price">
                 <span class="old-price" id="old-price"></span>
                 <span class="new-price" id="new-price"></span>
             </div>
             <ul id="phone-specs"></ul>
-            <button id="add-to-cart" class="buy-btn">Купить</button>
+            <button onclick="addToCart(currentPhone)" class="buy-btn">Купить</button>
         </div>
 
-        <!-- Футер -->
+        <!-- КОРЗИНА МОДАЛЬНОЕ ОКНО -->
+        <div id="cart-modal" class="modal hidden">
+            <h3>Корзина</h3>
+            <ul id="cart-items"></ul>
+            <button id="checkout-btn">Оформить заказ</button>
+            <button onclick="document.getElementById('cart-modal').classList.add('hidden')" class="close-btn">Закрыть</button>
+        </div>
+
+        <!-- ФУТЕР -->
         <footer class="footer">
             <p>ИП Голиков Никита Сергеевич</p>
             <p>ИНН: 253502067548</p>
