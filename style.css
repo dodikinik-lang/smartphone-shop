@@ -1,178 +1,111 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { 
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-    background: #1a1a2e; 
-    color: #e0e0e0; 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
-.container { max-width: 600px; margin: 0 auto; padding: 12px; }
 
-.hidden { display: none; }
+body {
+    background: #f4f4f4;
+    color: #333;
+    padding: 10px;
+}
 
 /* Баннер */
-.banner { 
-    background: #16213e; 
-    padding: 16px; 
-    border-radius: 12px; 
-    margin-bottom: 16px; 
-    text-align: center; 
-    font-weight: 600; 
-    color: #bb86fc; 
+.banner {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 16px;
 }
-.slide { display: none; }
+.slide {
+    display: none;
+    width: 100%;
+}
 .slide.active { display: block; }
+.slide img { width: 100%; border-radius: 12px; }
 
 /* Поиск */
-.search-bar { margin-bottom: 16px; }
-#search-input { 
-    width: 100%; 
-    padding: 12px; 
-    border: 1px solid #444; 
-    border-radius: 12px; 
-    background: #16213e; 
-    color: #fff; 
-    font-size: 16px; 
+.search-bar {
+    margin-bottom: 16px;
+}
+.search-bar input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
 /* Бренды */
-.brands-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 12px; 
-    margin-bottom: 16px; 
+.brands-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
 }
-.brand-btn { 
-    background: #16213e; 
-    border: 1px solid #444; 
-    color: #bb86fc; 
-    padding: 16px; 
-    border-radius: 12px; 
-    font-size: 16px; 
-    font-weight: 600; 
-    text-align: center; 
-    transition: 0.2s; 
+.brand-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: 0.2s;
 }
-.brand-btn:active { background: #0f1b3a; }
+.brand-card:hover { transform: translateY(-4px); }
+.brand-card img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px; }
 
-/* Карточки */
-.phones-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 14px; 
+/* Список смартфонов */
+.phones-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
 }
-.phone-card { 
-    background: #16213e; 
-    border-radius: 12px; 
-    overflow: hidden; 
-    cursor: pointer; 
-    transition: 0.2s; 
+.phone-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
 }
-.phone-card:active { transform: scale(0.98); }
-.phone-card img { width: 100%; height: 140px; object-fit: cover; }
-.phone-card h3 { padding: 10px 12px 4px; font-size: 14px; font-weight: 600; }
-.phone-card p { padding: 0 12px 8px; font-size: 12px; color: #aaa; }
-.phone-card .price { padding: 0 12px 8px; }
-.old-price { text-decoration: line-through; font-size: 12px; color: #777; }
-.new-price { font-size: 15px; font-weight: 600; color: #bb86fc; }
-.buy-btn-card { 
-    width: 100%; 
-    background: #bb86fc; 
-    color: #000; 
-    border: none; 
-    padding: 10px; 
-    font-weight: 600; 
-    font-size: 14px; 
+.phone-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    cursor: pointer;
 }
-
-/* Детальная */
-.phone-detail { padding: 16px; }
-.phone-detail img { width: 100%; border-radius: 12px; margin-bottom: 16px; }
-.phone-detail h2 { font-size: 20px; margin-bottom: 8px; color: #bb86fc; }
-.phone-detail p { margin-bottom: 12px; color: #ccc; }
-.phone-detail .price { font-size: 20px; margin: 12px 0; }
-.phone-detail ul { list-style: none; margin: 16px 0; }
-.phone-detail li { padding: 6px 0; font-size: 15px; }
-.buy-btn { 
-    width: 100%; 
-    background: #bb86fc; 
-    color: #000; 
-    border: none; 
-    padding: 16px; 
-    border-radius: 12px; 
-    font-size: 18px; 
-    font-weight: 600; 
-    margin-top: 20px; 
+.phone-card h3 {
+    margin: 12px 12px 4px;
+    font-size: 16px;
 }
-.back-btn { background: none; border: none; font-size: 24px; color: #bb86fc; margin-bottom: 16px; }
-
-/* Корзина */
-.cart-icon { 
-    position: fixed; top: 16px; right: 16px; 
-    background: #bb86fc; color: #000; 
-    padding: 10px 14px; border-radius: 50%; 
-    font-size: 18px; z-index: 100; 
-}
-#cart-count { 
-    background: #fff; color: #000; 
-    border-radius: 50%; padding: 2px 6px; 
-    font-size: 12px; font-weight: 600; 
-}
-.modal { 
-    position: fixed; top: 50%; left: 50%; 
-    transform: translate(-50%, -50%); 
-    background: #16213e; padding: 20px; 
-    border-radius: 16px; width: 90%; max-width: 340px; 
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5); z-index: 101; 
-}
-.modal h3 { color: #bb86fc; margin-bottom: 12px; }
-.modal button { 
-    background: #bb86fc; color: #000; 
-    padding: 12px; border-radius: 12px; 
-    font-weight: 600; width: 100%; 
-}
-
-/* Футер */
-.footer { 
-    text-align: center; padding: 20px 0; 
-    font-size: 13px; color: #777; 
-    border-top: 1px solid #333; margin-top: 30px; 
-}
-/* Описание в карточке — не обрезается, красиво */
-.phone-card p.desc {
+.phone-card p {
     font-size: 13px;
-    color: #ccc;
-    line-height: 1.4;
+    color: #666;
     margin: 6px 12px;
+    line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
-
-/* Цена — красиво и с пробелами */
 .phone-card .price {
     margin: 8px 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
 }
-
 .phone-card .old-price {
     font-size: 12px;
     color: #aaa;
     text-decoration: line-through;
 }
-
 .phone-card .new-price {
     font-size: 16px;
     font-weight: bold;
-    color: #fff;
+    color: #00cc00;
 }
-
-/* Кнопка "Купить" */
 .phone-card .buy-btn-card {
-    margin: 8px 12px;
+    margin: 8px 12px 12px;
     padding: 8px 16px;
     background: #00cc00;
     color: white;
@@ -180,54 +113,110 @@ body {
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
+    width: calc(100% - 24px);
 }
 
-.phone-card .buy-btn-card:hover {
-    background: #00aa00;
+/* Детальная страница */
+.phone-detail {
+    padding: 16px;
+    background: white;
+    border-radius: 12px;
+    margin: 16px 0;
 }
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #00cc00;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+#phone-img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+.phone-detail h2 {
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+.phone-detail p {
+    margin-bottom: 12px;
+    color: #555;
+}
+.phone-detail .price {
+    margin: 16px 0;
+    font-size: 18px;
+}
+.phone-detail .old-price {
+    color: #aaa;
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+.phone-detail .new-price {
+    color: #00cc00;
+    font-weight: bold;
+}
+.phone-detail ul {
+    margin: 16px 0;
+    padding-left: 20px;
+}
+.phone-detail ul li {
+    margin: 6px 0;
+    color: #444;
+}
+.buy-btn {
+    width: 100%;
+    padding: 14px;
+    background: #00cc00;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 /* Галерея */
 .gallery-modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 200;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 .gallery-close {
     position: absolute;
-    top: 20px;
-    right: 30px;
+    top: 20px; right: 30px;
     color: white;
     font-size: 40px;
     background: none;
     border: none;
     cursor: pointer;
 }
-
 .gallery-container {
     position: relative;
     max-width: 90%;
     max-height: 90%;
 }
-
 .gallery-slides {
     display: flex;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 12px;
 }
-
 .gallery-slide {
     min-width: 100%;
-    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    display: none;
 }
-
+.gallery-slide.active { display: block; }
 .gallery-prev, .gallery-next {
     position: absolute;
     top: 50%;
@@ -237,18 +226,76 @@ body {
     border: none;
     padding: 16px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 24px;
+    border-radius: 50%;
 }
+.gallery-prev { left: 10px; }
+.gallery-next { right: 10px; }
 
-.gallery-prev { left: 0; }
-.gallery-next { right: 0; }
-
-.gallery-prev:hover, .gallery-next:hover {
-    background: rgba(0,0,0,0.8);
-}
-
-/* Клик на фото для галереи */
-#phone-img, .phone-card img {
+/* Корзина */
+#cart-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00cc00;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     cursor: pointer;
-    border-radius: 8px;
+    z-index: 100;
 }
+#cart-icon span {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cart-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cart-content {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+.cart-content h3 { margin-bottom: 16px; }
+.cart-content ul { margin-bottom: 16px; }
+.cart-content li { padding: 8px 0; border-bottom: 1px solid #eee; }
+.close-btn {
+    background: #ccc;
+    color: #333;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* Утилиты */
+.hidden { display: none !important; }
