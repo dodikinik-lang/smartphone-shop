@@ -175,9 +175,10 @@ const phones = {
 let cart = [];
 let currentPhone = null;
 let currentBrand = '';
-let currentSlide = 0;
+let currentGallerySlide = 0;
+let galleryImages = [];
 
-// Баннер смена
+// Баннер
 setInterval(() => {
     const slides = document.querySelectorAll('.slide');
     let active = document.querySelector('.slide.active');
@@ -224,7 +225,7 @@ function renderPhones(phoneList) {
     const list = document.getElementById('phones-list');
     list.innerHTML = phoneList.map(p => `
         <div class="phone-card" onclick="showPhone(${p.id})">
-            <img src="${p.images[0]}" alt="${p.name}" loading="lazy" onclick="openGalleryFromCard(${p.id})">
+            <img src="${p.images[0]}" alt="${p.name}" loading="lazy" onclick="event.stopPropagation(); openGalleryFromCard(${p.id})">
             <h3>${p.name}</h3>
             <p>${p.desc}</p>
             <div class="price">
@@ -261,17 +262,13 @@ function backToBrands() {
 }
 
 // Галерея
-let galleryImages = [];
-let currentGallerySlide = 0;
-
 function renderGallery(images) {
     galleryImages = images;
     const slides = document.getElementById('gallery-slides');
-    slides.innerHTML = images.map((img, index) => `
-        <img src="${img}" class="gallery-slide" alt="Фото ${index + 1}">
+    slides.innerHTML = images.map((img, i) => `
+        <img src="${img}" class="gallery-slide${i === 0 ? ' active' : ''}" alt="Фото ${i + 1}">
     `).join('');
     currentGallerySlide = 0;
-    showSlide(currentGallerySlide);
 }
 
 function openGallery() {
@@ -290,8 +287,8 @@ function closeGallery() {
 
 function showSlide(n) {
     const slides = document.querySelectorAll('.gallery-slide');
-    slides.forEach(slide => slide.style.display = 'none');
-    slides[n].style.display = 'block';
+    slides.forEach(s => s.classList.remove('active'));
+    slides[n].classList.add('active');
 }
 
 function nextSlide() {
