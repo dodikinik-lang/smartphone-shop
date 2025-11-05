@@ -3,36 +3,36 @@ tg.ready();
 tg.expand();
 
 const phones = [
-    { id: 1, name: "Galaxy A17 4/128GB", desc: "Бюджетный смартфон с 4 ГБ ОЗУ", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a17-5g-1.jpg", oldPrice: 15999, newPrice: 14999, specs: ["6.5\" PLS", "Helio G85", "50MP", "5000 mAh"], brand: "Samsung" },
-    { id: 2, name: "Galaxy A17 8/256GB", desc: "Расширенная память", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a17-5g-2.jpg", oldPrice: 20999, newPrice: 19999, specs: ["6.5\" PLS", "Helio G85", "50MP", "5000 mAh"], brand: "Samsung" },
-    { id: 3, name: "Galaxy A26 6/128GB", desc: "Средний сегмент с AMOLED", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a26-1.jpg", oldPrice: 22999, newPrice: 21999, specs: ["6.6\" Super AMOLED", "Exynos 1330", "48MP", "5000 mAh"], brand: "Samsung" },
-    { id: 4, name: "Galaxy A26 8/256GB", desc: "Больше памяти", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a26-2.jpg", oldPrice: 25999, newPrice: 24999, specs: ["6.6\" Super AMOLED", "Exynos 1330", "48MP", "5000 mAh"], brand: "Samsung" },
-    { id: 5, name: "Galaxy A36 8/128GB", desc: "Премиум A-серия", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a36-1.jpg", oldPrice: 28999, newPrice: 27499, specs: ["6.7\" Super AMOLED", "Exynos 1380", "50MP OIS", "5000 mAh"], brand: "Samsung" },
-    { id: 6, name: "Galaxy A36 8/256GB", desc: "Максимум памяти", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a36-2.jpg", oldPrice: 32999, newPrice: 31499, specs: ["6.7\" Super AMOLED", "Exynos 1380", "50MP OIS", "5000 mAh"], brand: "Samsung" },
-    { id: 7, name: "Galaxy A56 8/128GB", desc: "Флагман A-серии", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a56-1.jpg", oldPrice: 35999, newPrice: 34499, specs: ["6.7\" AMOLED 120Hz", "Exynos 1480", "50MP", "5000 mAh"], brand: "Samsung" },
-    { id: 8, name: "Galaxy A56 8/256GB", desc: "Топовая версия", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a56-2.jpg", oldPrice: 39999, newPrice: 35499, specs: ["6.7\" AMOLED 120Hz", "Exynos 1480", "50MP", "5000 mAh"], brand: "Samsung" },
-    { id: 9, name: "Honor X6C 6/128GB", desc: "Базовый X-серия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x6c-1.jpg", oldPrice: 9999, newPrice: 9499, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"], brand: "Honor" },
-    { id: 10, name: "Honor X6C 6/256GB", desc: "Расширенная версия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x6c-2.jpg", oldPrice: 11999, newPrice: 11499, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"], brand: "Honor" },
-    { id: 11, name: "Honor X7C 6/128GB", desc: "Улучшенная камера", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x7c-1.jpg", oldPrice: 13999, newPrice: 12499, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"], brand: "Honor" },
-    { id: 12, name: "Honor X7C 8/256GB", desc: "Больше памяти", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x7c-2.jpg", oldPrice: 16999, newPrice: 15499, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"], brand: "Honor" },
-    { id: 13, name: "Honor X8C 8/128GB", desc: "120Hz экран", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x8c-1.jpg", oldPrice: 17999, newPrice: 16499, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"], brand: "Honor" },
-    { id: 14, name: "Honor X8C 8/256GB", desc: "Высокая производительность", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x8c-2.jpg", oldPrice: 19999, newPrice: 18499, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"], brand: "Honor" },
-    { id: 15, name: "Honor X9C 8/256GB", desc: "Премиум X-серия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x9c-1.jpg", oldPrice: 24999, newPrice: 23999, specs: ["6.78\" OLED 120Hz", "Snapdragon 8 Gen 2", "200MP", "5000 mAh"], brand: "Honor" },
-    { id: 16, name: "Honor 400 Lite 8/256GB", desc: "Лёгкая версия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-lite-1.jpg", oldPrice: 24999, newPrice: 21499, specs: ["6.7\" AMOLED", "Dimensity 6020", "108MP", "5000 mAh"], brand: "Honor" },
-    { id: 17, name: "Honor 400 8/256GB", desc: "Стандартная модель", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-1.jpg", oldPrice: 36999, newPrice: 33999, specs: ["6.78\" OLED", "Snapdragon 8 Gen 3", "50MP", "5300 mAh"], brand: "Honor" },
-    { id: 18, name: "Honor 400 Pro 12/256GB", desc: "Про-версия", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-pro-1.jpg", oldPrice: 56999, newPrice: 51999, specs: ["6.8\" OLED 120Hz", "Snapdragon 8 Gen 3", "200MP", "5500 mAh"], brand: "Honor" },
-    { id: 19, name: "Huawei nova Y63 4/128GB", desc: "Бюджетный nova", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-y63-1.jpg", oldPrice: 9999, newPrice: 8499, specs: ["6.52\" IPS", "Snapdragon 680", "50MP", "5000 mAh"], brand: "Huawei" },
-    { id: 20, name: "Huawei nova Y73 8/256GB", desc: "Расширенная Y-серия", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-y73-1.jpg", oldPrice: 14999, newPrice: 13499, specs: ["6.75\" IPS 90Hz", "Snapdragon 680", "50MP", "5000 mAh"], brand: "Huawei" },
-    { id: 21, name: "Huawei nova 14 12/256GB", desc: "Стильный дизайн", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-1.jpg", oldPrice: 33999, newPrice: 21999, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"], brand: "Huawei" },
-    { id: 22, name: "Huawei nova 14 12/512GB", desc: "Максимум памяти", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-2.jpg", oldPrice: 36999, newPrice: 33999, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"], brand: "Huawei" },
-    { id: 23, name: "Huawei nova 14 Pro 12/512GB", desc: "Про-версия с камерой", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-pro-1.jpg", oldPrice: 46999, newPrice: 44999, specs: ["6.78\" OLED 120Hz", "Kirin 9000", "50MP переменная", "4500 mAh"], brand: "Huawei" }
+    { id: 1, name: "Galaxy A17", fullName: "Samsung Galaxy A17", variant: "4Gb/128Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a17-5g-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a17-5g-2.jpg", oldPrice: 15999, newPrice: 14999, specs: ["6.5\" PLS", "Helio G85", "50MP", "5000 mAh"], brand: "Samsung" },
+    { id: 2, name: "Galaxy A17", fullName: "Samsung Galaxy A17", variant: "8Gb/256Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a17-5g-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a17-5g-2.jpg", oldPrice: 20999, newPrice: 19999, specs: ["6.5\" PLS", "Helio G85", "50MP", "5000 mAh"], brand: "Samsung" },
+    { id: 3, name: "Galaxy A26", fullName: "Samsung Galaxy A26", variant: "6Gb/128Gb синий EAC", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a26-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a26-2.jpg", oldPrice: 22999, newPrice: 21999, specs: ["6.6\" Super AMOLED", "Exynos 1330", "48MP", "5000 mAh"], brand: "Samsung" },
+    { id: 4, name: "Galaxy A26", fullName: "Samsung Galaxy A26", variant: "8Gb/256Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a26-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a26-2.jpg", oldPrice: 25999, newPrice: 24999, specs: ["6.6\" Super AMOLED", "Exynos 1330", "48MP", "5000 mAh"], brand: "Samsung" },
+    { id: 5, name: "Galaxy A36", fullName: "Samsung Galaxy A36", variant: "8Gb/128Gb белый EAC", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a36-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a36-2.jpg", oldPrice: 28999, newPrice: 27499, specs: ["6.7\" Super AMOLED", "Exynos 1380", "50MP OIS", "5000 mAh"], brand: "Samsung" },
+    { id: 6, name: "Galaxy A36", fullName: "Samsung Galaxy A36", variant: "8Gb/256Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a36-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a36-2.jpg", oldPrice: 32999, newPrice: 31499, specs: ["6.7\" Super AMOLED", "Exynos 1380", "50MP OIS", "5000 mAh"], brand: "Samsung" },
+    { id: 7, name: "Galaxy A56", fullName: "Samsung Galaxy A56", variant: "8Gb/128Gb зелёный EAC", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a56-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a56-2.jpg", oldPrice: 35999, newPrice: 34499, specs: ["6.7\" AMOLED 120Hz", "Exynos 1480", "50MP", "5000 mAh"], brand: "Samsung" },
+    { id: 8, name: "Galaxy A56", fullName: "Samsung Galaxy A56", variant: "8Gb/256Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a56-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a56-2.jpg", oldPrice: 39999, newPrice: 35499, specs: ["6.7\" AMOLED 120Hz", "Exynos 1480", "50MP", "5000 mAh"], brand: "Samsung" },
+    { id: 9, name: "Honor X6C", fullName: "Honor X6C", variant: "6Gb/128Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x6c-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x6c-2.jpg", oldPrice: 9999, newPrice: 9499, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"], brand: "Honor" },
+    { id: 10, name: "Honor X6C", fullName: "Honor X6C", variant: "6Gb/256Gb синий EAC", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x6c-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x6c-2.jpg", oldPrice: 11999, newPrice: 11499, specs: ["6.5\" IPS", "Helio G85", "50MP", "5000 mAh"], brand: "Honor" },
+    { id: 11, name: "Honor X7C", fullName: "Honor X7C", variant: "6Gb/128Gb белый EAC", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x7c-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x7c-2.jpg", oldPrice: 13999, newPrice: 12499, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"], brand: "Honor" },
+    { id: 12, name: "Honor X7C", fullName: "Honor X7C", variant: "8Gb/256Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x7c-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x7c-2.jpg", oldPrice: 16999, newPrice: 15499, specs: ["6.6\" AMOLED", "Snapdragon 680", "64MP", "5000 mAh"], brand: "Honor" },
+    { id: 13, name: "Honor X8C", fullName: "Honor X8C", variant: "8Gb/128Gb серебристый EAC", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x8c-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x8c-2.jpg", oldPrice: 17999, newPrice: 16499, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"], brand: "Honor" },
+    { id: 14, name: "Honor X8C", fullName: "Honor X8C", variant: "8Gb/256Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x8c-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x8c-2.jpg", oldPrice: 19999, newPrice: 18499, specs: ["6.7\" AMOLED 120Hz", "Snapdragon 7 Gen 1", "108MP", "4500 mAh"], brand: "Honor" },
+    { id: 15, name: "Honor X9C", fullName: "Honor X9C", variant: "8Gb/256Gb золотой EAC", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x9c-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/honor/honor-x9c-2.jpg", oldPrice: 24999, newPrice: 23999, specs: ["6.78\" OLED 120Hz", "Snapdragon 8 Gen 2", "200MP", "5000 mAh"], brand: "Honor" },
+    { id: 16, name: "Honor 400 Lite", fullName: "Honor 400 Lite", variant: "8Gb/256Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-lite-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-lite-2.jpg", oldPrice: 24999, newPrice: 21499, specs: ["6.7\" AMOLED", "Dimensity 6020", "108MP", "5000 mAh"], brand: "Honor" },
+    { id: 17, name: "Honor 400", fullName: "Honor 400", variant: "8Gb/256Gb белый EAC", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-2.jpg", oldPrice: 36999, newPrice: 33999, specs: ["6.78\" OLED", "Snapdragon 8 Gen 3", "50MP", "5300 mAh"], brand: "Honor" },
+    { id: 18, name: "Honor 400 Pro", fullName: "Honor 400 Pro", variant: "12Gb/256Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-pro-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/honor/honor-400-pro-2.jpg", oldPrice: 56999, newPrice: 51999, specs: ["6.8\" OLED 120Hz", "Snapdragon 8 Gen 3", "200MP", "5500 mAh"], brand: "Honor" },
+    { id: 19, name: "Huawei nova Y63", fullName: "Huawei nova Y63", variant: "4Gb/128Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-y63-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-y63-2.jpg", oldPrice: 9999, newPrice: 8499, specs: ["6.52\" IPS", "Snapdragon 680", "50MP", "5000 mAh"], brand: "Huawei" },
+    { id: 20, name: "Huawei nova Y73", fullName: "Huawei nova Y73", variant: "8Gb/256Gb синий EAC", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-y73-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-y73-2.jpg", oldPrice: 14999, newPrice: 13499, specs: ["6.75\" IPS 90Hz", "Snapdragon 680", "50MP", "5000 mAh"], brand: "Huawei" },
+    { id: 21, name: "Huawei nova 14", fullName: "Huawei nova 14", variant: "12Gb/256Gb розовый EAC", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-2.jpg", oldPrice: 33999, newPrice: 21999, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"], brand: "Huawei" },
+    { id: 22, name: "Huawei nova 14", fullName: "Huawei nova 14", variant: "12Gb/512Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-2.jpg", oldPrice: 36999, newPrice: 33999, specs: ["6.7\" OLED", "Kirin 8000", "60MP", "4500 mAh"], brand: "Huawei" },
+    { id: 23, name: "Huawei nova 14 Pro", fullName: "Huawei nova 14 Pro", variant: "12Gb/512Gb чёрный EAC", img: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-pro-1.jpg", img2: "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-14-pro-2.jpg", oldPrice: 46999, newPrice: 44999, specs: ["6.78\" OLED 120Hz", "Kirin 9000", "50MP переменная", "4500 mAh"], brand: "Huawei" }
 ];
 
 let cart = [];
 let currentPhone = null;
 let currentFilter = 'all';
 
-// Открыть/закрыть боковую панель
+// Боковая панель
 document.getElementById('catalog-btn').onclick = () => {
     document.getElementById('sidebar').classList.add('open');
     document.getElementById('overlay').classList.remove('hidden');
@@ -42,7 +42,7 @@ function closeSidebar() {
     document.getElementById('overlay').classList.add('hidden');
 }
 
-// Показать категорию
+// Фильтры
 function showCategory(filter) {
     currentFilter = filter;
     closeSidebar();
@@ -54,7 +54,7 @@ function showBrand(brand) {
     renderPhones();
 }
 
-// Рендер смартфонов
+// Рендер
 function renderPhones() {
     const list = document.getElementById('phones-list');
     let filtered = phones;
@@ -63,17 +63,21 @@ function renderPhones() {
     }
     const query = document.getElementById('search-input').value.toLowerCase();
     if (query) {
-        filtered = filtered.filter(p => p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
+        filtered = filtered.filter(p => p.fullName.toLowerCase().includes(query) || p.variant.toLowerCase().includes(query));
     }
     list.innerHTML = filtered.map(p => `
         <div class="phone-card" onclick="showPhone(${p.id})">
-            <img src="${p.img}" alt="${p.name}" loading="lazy">
-            <h3>${p.name}</h3>
+            <div class="phone-images">
+                <img src="${p.img}" alt="${p.fullName}">
+                <img src="${p.img2}" alt="${p.fullName} задняя">
+            </div>
+            <h3>${p.fullName}</h3>
+            <div class="desc">${p.variant}</div>
             <div class="price">
                 <span class="old-price">${p.oldPrice.toLocaleString()} ₽</span>
                 <span class="new-price">${p.newPrice.toLocaleString()} ₽</span>
             </div>
-            <button onclick="event.stopPropagation(); addToCart(${p.id})" class="buy-btn">Купить</button>
+            <button onclick="event.stopPropagation(); addToCart(${p.id})" class="buy-btn">В корзину</button>
         </div>
     `).join('');
 }
@@ -90,8 +94,8 @@ function showPhone(id) {
     document.getElementById('phones-container').classList.add('hidden');
     document.getElementById('phone-detail').classList.remove('hidden');
     document.getElementById('phone-img').src = currentPhone.img;
-    document.getElementById('phone-name').textContent = currentPhone.name;
-    document.getElementById('phone-desc').textContent = currentPhone.desc;
+    document.getElementById('phone-name').textContent = currentPhone.fullName;
+    document.getElementById('phone-desc').textContent = currentPhone.variant;
     document.getElementById('old-price').textContent = currentPhone.oldPrice.toLocaleString() + ' ₽';
     document.getElementById('new-price').textContent = currentPhone.newPrice.toLocaleString() + ' ₽';
     document.getElementById('phone-specs').innerHTML = currentPhone.specs.map(s => `<li>${s}</li>`).join('');
@@ -113,7 +117,7 @@ function addToCart(id) {
 }
 document.getElementById('checkout-btn').onclick = () => {
     if (cart.length === 0) return tg.showAlert('Корзина пуста!');
-    const order = cart.map(p => `${p.name} — ${p.newPrice.toLocaleString()} ₽`).join('\n');
+    const order = cart.map(p => `${p.fullName} (${p.variant}) — ${p.newPrice.toLocaleString()} ₽`).join('\n');
     tg.sendData(`Новый заказ:\n${order}\n\nИП Голиков Никита Сергеевич\nИНН: 253502067548`);
     cart = [];
     updateCart();
@@ -122,6 +126,6 @@ document.getElementById('checkout-btn').onclick = () => {
 };
 function updateCart() {
     document.getElementById('cart-count').textContent = cart.length;
-    document.getElementById('cart-items').innerHTML = cart.map(p => `<li>${p.name} — ${p.newPrice.toLocaleString()} ₽</li>`).join('');
+    document.getElementById('cart-items').innerHTML = cart.map(p => `<li>${p.fullName} (${p.variant}) — ${p.newPrice.toLocaleString()} ₽</li>`).join('');
 }
 updateCart();
