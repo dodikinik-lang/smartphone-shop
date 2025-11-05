@@ -10,7 +10,7 @@
 <body>
     <div class="app">
 
-        <!-- ШАПКА: Баннер + Кнопка Каталог + Корзина -->
+        <!-- ШАПКА -->
         <header class="header">
             <button id="catalog-btn" class="catalog-btn">Каталог</button>
             <div class="banner" onclick="tg.openLink('https://t.me/DigitalRetail_bot')">
@@ -24,7 +24,7 @@
             <input type="text" id="search-input" placeholder="Поиск по магазину..." oninput="searchPhones()">
         </div>
 
-        <!-- ВЫДВИЖНАЯ ПАНЕЛЬ КАТАЛОГА -->
+        <!-- БОКОВАЯ ПАНЕЛЬ -->
         <div id="sidebar" class="sidebar">
             <button onclick="closeSidebar()" class="close-sidebar">×</button>
             <h3>Каталог</h3>
@@ -37,7 +37,7 @@
         </div>
         <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
 
-        <!-- КОНТЕНТ: СМАРТФОНЫ -->
+        <!-- СМАРТФОНЫ -->
         <main id="phones-container" class="phones-container">
             <div id="phones-list" class="phones-grid"></div>
         </main>
@@ -53,10 +53,10 @@
                 <span class="new-price" id="new-price"></span>
             </div>
             <ul id="phone-specs"></ul>
-            <button onclick="addToCart(currentPhone)" class="buy-btn">Купить</button>
+            <button onclick="addToCart(currentPhone)" class="buy-btn">В корзину</button>
         </div>
 
-        <!-- КОРЗИНА МОДАЛЬНОЕ ОКНО -->
+        <!-- КОРЗИНА -->
         <div id="cart-modal" class="modal hidden">
             <h3>Корзина</h3>
             <ul id="cart-items"></ul>
