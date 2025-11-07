@@ -59,4 +59,82 @@ function filterByBrand(brand) {
     applyFilters();
 }
 
-function switch
+function switchTab(t) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+    if (t === 'catalog') { document.querySelector('.tab-btn:nth-child(1)').classList.add('active'); document.getElementById('catalog-tab').classList.remove('hidden'); }
+    if (t === 'info') { document.querySelector('.tab-btn:nth-child(2)').classList.add('active'); document.getElementById('info-tab').classList.remove('hidden'); }
+}
+
+function showPhone(id) {
+    const p = phones.find(x => x.id === id);
+    document.getElementById('detail-img').src = p.img;
+    document.getElementById('detail-name').textContent = p.fullName;
+    document.getElementById('detail-variant').textContent = p.variant;
+    document.getElementById('detail-specs').innerHTML = p.specs.map(s => `<li>${s}</li>`).join('');
+    document.getElementById('detail-old-price').textContent = p.oldPrice.toLocaleString() + ' ₽';
+    document.getElementById('detail-new-price').textContent = p.newPrice.toLocaleString() + ' ₽';
+    document.getElementById('detail-buy-btn').onclick = () => { addToCart(id); closeModal(); };
+    document.getElementById('phone-detail-modal').classList.remove('hidden');
+    document.getElementById('modal-overlay').classList.remove('hidden');
+}
+
+function closeModal() {
+    document.getElementById('phone-detail-modal').classList.add('hidden');
+    document.getElementById('modal-overlay').classList.add('hidden');
+}
+
+document.getElementById('modal-overlay').onclick = () => {
+    closeModal();
+    document.getElementById('cart-modal').classList.add('hidden');
+};
+
+document.getElementById('cart-icon').onclick = () => {
+    document.getElementById('cart-modal').classList.toggle('hidden');
+};
+
+function addToCart(id) {
+    const p = phones.find(x => x.id === id);
+    cart.push(p);
+    updateCart();
+    tg.showAlert('Добавлено в корзину!');
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+    tg.showAlert('Удалено из корзины');
+}
+
+function clearCart() {
+    cart = [];
+    updateCart();
+    tg.showAlert('Корзина очищена');
+}
+
+document.getElementById('clear-cart').onclick = clearCart;
+
+function updateCart() {
+    document.getElementById('cart-count').textContent = cart.length;
+    document.getElementById('cart-items').innerHTML = cart.map((p, i) => `
+        <li>
+            <div class="cart-item-text">${p.fullName} (${p.variant}) — ${p.newPrice.toLocaleString()} ₽</div>
+            <button class="remove-item" onclick="removeFromCart(${i})">×</button>
+        </li>
+    `).join('');
+}
+
+document.getElementById('checkout-btn').onclick = () => {
+    if (cart.length === 0) return tg.showAlert('Корзина пуста!');
+    const name = document.getElementById('user-name').value.trim() || 'не указано';
+    const tel = document.getElementById('user-phone').value.trim() || 'не указано';
+    const order = cart.map(p => `${p.fullName} (${p.variant}) — ${p.newPrice.toLocaleString()} ₽`).join('\n');
+    tg.sendData(`Новый заказ:\n${order}\n\nИмя: ${name}\nТелефон: ${tel}\n\nИП Голиков Никита Сергеевич\nИНН: 253502067548`);
+    cart = [];
+    updateCart();
+    document.getElementById('cart-modal').classList.add('hidden');
+    tg.close();
+};
+
+applyFilters();
+updateCart();
