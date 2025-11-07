@@ -26,7 +26,7 @@
         <div class="search-bar">
             <input type="text" id="search-input" placeholder="Поиск по магазину..." oninput="searchPhones()">
         </div>
-        <main class="phones-container">
+        <main id="phones-container" class="phones-container">
             <div id="phones-list" class="phones-grid"></div>
         </main>
     </div>
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <!-- ДЕТАЛИ ТОВАРА -->
+    <!-- МОДАЛКА ДЕТАЛЕЙ -->
     <div id="phone-detail-modal" class="modal hidden">
         <button class="close-modal" onclick="closeModal()">×</button>
         <img id="detail-img" src="" alt="">
@@ -54,8 +54,6 @@
         </div>
         <button id="detail-buy-btn" class="buy-btn">В корзину</button>
     </div>
-
-    <!-- ОВЕРЛЕЙ -->
     <div id="modal-overlay" class="overlay hidden"></div>
 
     <!-- КОРЗИНА -->
@@ -72,7 +70,6 @@
         <p>ИНН: 253502067548</p>
     </footer>
 </div>
-
 <script src="script.js"></script>
 </body>
 </html>
