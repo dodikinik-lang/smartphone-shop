@@ -59,19 +59,4 @@ function filterByBrand(brand) {
     applyFilters();
 }
 
-function switchTab(t) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-    if (t === 'catalog') { document.querySelector('.tab-btn:nth-child(1)').classList.add('active'); document.getElementById('catalog-tab').classList.remove('hidden'); }
-    if (t === 'info') { document.querySelector('.tab-btn:nth-child(2)').classList.add('active'); document.getElementById('info-tab').classList.remove('hidden'); }
-}
-
-function showPhone(id) {
-    const p = phones.find(x => x.id === id);
-    document.getElementById('detail-img').src = p.img;
-    document.getElementById('detail-name').textContent = p.fullName;
-    document.getElementById('detail-variant').textContent = p.variant;
-    document.getElementById('detail-specs').innerHTML = p.specs.map(s => `<li>${s}</li>`).join('');
-    document.getElementById('detail-old-price').textContent = p.oldPrice.toLocaleString() + ' ₽';
-    document.getElementById('detail-new-price').textContent = p.newPrice.toLocaleString() + ' ₽';
-    document.getElementById('detail-buy-btn').onclick
+function switch
