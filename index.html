@@ -8,45 +8,71 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app">
-    <!-- Шапка -->
-    <header class="header">
-        <h1>СмартПлощадка</h1>
-        <input type="text" id="search-input" placeholder="Поиск..." oninput="searchPhones()">
-    </header>
+    <div class="app">
 
-    <!-- Контейнер вкладок -->
-    <main id="tab-container">
-        <!-- Каталог -->
-        <section id="tab-catalog" class="tab active">
-            <div id="phones-list" class="phones-grid"></div>
-        </section>
+        <!-- ШАПКА -->
+        <header class="header">
+            <h1>СмартПлощадка</h1>
+            <div id="cart-icon" class="cart-icon">🛒 <span id="cart-count">0</span></div>
+        </header>
+
+        <!-- Вкладки -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('catalog')">Каталог</button>
+            <button class="tab-btn" onclick="switchTab('info')">Ваши данные</button>
+        </div>
+
+        <!-- КАТАЛОГ -->
+        <div id="catalog-tab" class="tab-content">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Поиск по магазину..." oninput="searchPhones()">
+            </div>
+
+            <main id="phones-container" class="phones-container">
+                <div id="phones-list" class="phones-grid"></div>
+            </main>
+        </div>
+
+        <!-- Вкладка "Ваши данные" -->
+        <div id="info-tab" class="tab-content hidden">
+            <div class="info-form">
+                <label>Имя:</label>
+                <input type="text" id="user-name" placeholder="Ваше имя">
+                <label>Телефон:</label>
+                <input type="tel" id="user-phone" placeholder="+7 (___) ___-__-__">
+            </div>
+        </div>
+
+        <!-- Модальное окно с деталями телефона -->
+        <div id="phone-detail-modal" class="modal hidden">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <img id="detail-img" src="" alt="">
+            <h2 id="detail-name"></h2>
+            <p id="detail-variant"></p>
+            <ul id="detail-specs"></ul>
+            <div class="price">
+                <span class="old-price" id="detail-old-price"></span>
+                <span class="new-price" id="detail-new-price"></span>
+            </div>
+            <button id="detail-buy-btn">В корзину</button>
+        </div>
+        <div id="modal-overlay" class="overlay hidden" onclick="closeModal()"></div>
 
         <!-- Корзина -->
-        <section id="tab-cart" class="tab">
-            <div id="cart-container">
-                <ul id="cart-items"></ul>
-                <input type="text" id="customer-name" placeholder="Ваше имя">
-                <input type="text" id="customer-phone" placeholder="Телефон">
-                <button id="checkout-btn">Оформить заказ</button>
-            </div>
-        </section>
+        <div id="cart-modal" class="modal hidden">
+            <h3>Корзина</h3>
+            <ul id="cart-items"></ul>
+            <button id="checkout-btn">Оформить заказ</button>
+            <button onclick="document.getElementById('cart-modal').classList.add('hidden')" class="close-btn">Закрыть</button>
+        </div>
 
-        <!-- Профиль -->
-        <section id="tab-profile" class="tab">
+        <!-- ФУТЕР -->
+        <footer class="footer">
             <p>ИП Голиков Никита Сергеевич</p>
             <p>ИНН: 253502067548</p>
-        </section>
-    </main>
+        </footer>
+    </div>
 
-    <!-- Нижняя панель -->
-    <nav class="bottom-nav">
-        <button class="tab-btn active" data-tab="catalog">Каталог</button>
-        <button class="tab-btn" data-tab="cart">Корзина <span id="cart-count">0</span></button>
-        <button class="tab-btn" data-tab="profile">Профиль</button>
-    </nav>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
