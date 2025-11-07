@@ -13,18 +13,32 @@
         <!-- ШАПКА -->
         <header class="header">
             <button id="catalog-btn" class="catalog-btn">Каталог</button>
-            <div class="banner" onclick="tg.openLink('https://t.me/DigitalRetail_bot')">
-                <img src="https://via.placeholder.com/800x100/00cc00/ffffff?text=Скидки+до+30%25+на+все+смартфоны!" alt="Реклама">
+            <div class="banner-slider">
+                <div class="banner active" onclick="tg.openLink('https://t.me/DigitalRetail_bot')">
+                    <img src="https://via.placeholder.com/800x100/00cc00/ffffff?text=Скидки+до+30%25+на+все+смартфоны!" alt="Баннер 1">
+                </div>
+                <div class="banner" onclick="tg.openLink('https://t.me/DigitalRetail_bot')">
+                    <img src="https://via.placeholder.com/800x100/ff6600/ffffff?text=Новинки+уже+в+наличии!" alt="Баннер 2">
+                </div>
+                <div class="banner" onclick="tg.openLink('https://t.me/DigitalRetail_bot')">
+                    <img src="https://via.placeholder.com/800x100/0066ff/ffffff?text=Рассрочка+0%+на+6+месяцев" alt="Баннер 3">
+                </div>
             </div>
-            <div id="cart-icon" class="cart-icon">Корзина <span id="cart-count">0</span></div>
+            <div id="cart-icon" class="cart-icon">🛒 <span id="cart-count">0</span></div>
         </header>
 
-        <!-- ПОИСК -->
+        <!-- ПОИСК И ФИЛЬТР -->
         <div class="search-bar">
             <input type="text" id="search-input" placeholder="Поиск по магазину..." oninput="searchPhones()">
+            <select id="sort-select" onchange="sortPhones()">
+                <option value="default">Сортировка</option>
+                <option value="price-asc">Цена ↑</option>
+                <option value="price-desc">Цена ↓</option>
+                <option value="discount">По скидке</option>
+            </select>
         </div>
 
-        <!-- БОКОВАЯ ПАНЕЛЬ -->
+        <!-- БОКОВОЕ МЕНЮ -->
         <div id="sidebar" class="sidebar">
             <button onclick="closeSidebar()" class="close-sidebar">×</button>
             <h3>Каталог</h3>
@@ -40,6 +54,7 @@
         <!-- СМАРТФОНЫ -->
         <main id="phones-container" class="phones-container">
             <div id="phones-list" class="phones-grid"></div>
+            <div id="loader" class="loader hidden"></div>
         </main>
 
         <!-- ДЕТАЛИ -->
@@ -53,7 +68,7 @@
                 <span class="new-price" id="new-price"></span>
             </div>
             <ul id="phone-specs"></ul>
-            <button onclick="addToCart(currentPhone)" class="buy-btn">В корзину</button>
+            <button onclick="addToCart(currentPhone)" class="buy-btn">Добавить в корзину</button>
         </div>
 
         <!-- КОРЗИНА -->
@@ -61,8 +76,11 @@
             <h3>Корзина</h3>
             <ul id="cart-items"></ul>
             <button id="checkout-btn">Оформить заказ</button>
-            <button onclick="document.getElementById('cart-modal').classList.add('hidden')" class="close-btn">Закрыть</button>
+            <button onclick="closeCart()" class="close-btn">Закрыть</button>
         </div>
+
+        <!-- TOAST -->
+        <div id="toast" class="toast hidden"></div>
 
         <!-- ФУТЕР -->
         <footer class="footer">
