@@ -9,25 +9,21 @@
 </head>
 <body>
 <div class="app">
-    <!-- ШАПКА -->
     <header class="header">
         <h1>СмартПлощадка</h1>
         <div id="cart-icon" class="cart-icon">Корзина <span id="cart-count">0</span></div>
     </header>
 
-    <!-- ВКЛАДКИ -->
     <div class="tabs">
         <button class="tab-btn active" onclick="switchTab('catalog')">Каталог</button>
         <button class="tab-btn" onclick="switchTab('info')">Ваши данные</button>
     </div>
 
-    <!-- КАТАЛОГ -->
     <div id="catalog-tab" class="tab-content">
         <div class="search-bar">
             <input type="text" id="search-input" placeholder="Поиск..." oninput="applyFilters()">
         </div>
 
-        <!-- ФИЛЬТРЫ -->
         <div class="brand-filters">
             <button class="filter-btn active" data-brand="all" onclick="filterByBrand('all')">Все</button>
             <button class="filter-btn" data-brand="Samsung" onclick="filterByBrand('Samsung')">Samsung</button>
@@ -40,7 +36,6 @@
         </main>
     </div>
 
-    <!-- ВАШИ ДАННЫЕ -->
     <div id="info-tab" class="tab-content hidden">
         <div class="info-form">
             <label>Имя:</label>
@@ -50,9 +45,8 @@
         </div>
     </div>
 
-    <!-- МОДАЛКА -->
     <div id="phone-detail-modal" class="modal hidden">
-        <button class="close-modal" onclick="closeModal()">X</button>
+        <button class="close-modal" onclick="closeModal()">×</button>
         <img id="detail-img" src="" alt="">
         <h2 id="detail-name"></h2>
         <p id="detail-variant"></p>
@@ -65,10 +59,11 @@
     </div>
     <div id="modal-overlay" class="overlay hidden"></div>
 
-    <!-- КОРЗИНА С УДАЛЕНИЕМ -->
     <div id="cart-modal" class="cart-modal hidden">
-        <h3>Корзина</h3>
-        <button id="clear-cart" class="clear-btn">Очистить всё</button>
+        <div class="cart-header">
+            <h3>Корзина</h3>
+            <button id="clear-cart" class="clear-btn">Очистить всё</button>
+        </div>
         <ul id="cart-items"></ul>
         <button id="checkout-btn" class="buy-btn">Оформить заказ</button>
         <button class="close-btn" onclick="document.getElementById('cart-modal').classList.add('hidden')">Закрыть</button>
