@@ -63,4 +63,23 @@
         </div>
         <button id="detail-buy-btn" class="buy-btn">В корзину</button>
     </div>
-    <
+    <div id="modal-overlay" class="overlay hidden"></div>
+
+    <!-- КОРЗИНА -->
+    <div id="cart-modal" class="cart-modal hidden">
+        <h3>Корзина</h3>
+        <ul id="cart-items"></ul>
+        <button id="checkout-btn" class="buy-btn">Оформить заказ</button>
+        <button class="close-btn" onclick="document.getElementById('cart-modal').classList.add('hidden')">Закрыть</button>
+    </div>
+
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <p>ИП Голиков Никита Сергеевич</p>
+        <p>ИНН: 253502067548</p>
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
