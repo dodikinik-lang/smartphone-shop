@@ -24,10 +24,10 @@
     <!-- КАТАЛОГ -->
     <div id="catalog-tab" class="tab-content">
         <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Поиск по магазину..." oninput="applyFilters()">
+            <input type="text" id="search-input" placeholder="Поиск..." oninput="applyFilters()">
         </div>
 
-        <!-- ФИЛЬТРЫ ПО БРЕНДАМ -->
+        <!-- ФИЛЬТРЫ -->
         <div class="brand-filters">
             <button class="filter-btn active" data-brand="all" onclick="filterByBrand('all')">Все</button>
             <button class="filter-btn" data-brand="Samsung" onclick="filterByBrand('Samsung')">Samsung</button>
@@ -50,9 +50,9 @@
         </div>
     </div>
 
-    <!-- МОДАЛКА ДЕТАЛЕЙ -->
+    <!-- МОДАЛКА -->
     <div id="phone-detail-modal" class="modal hidden">
-        <button class="close-modal" onclick="closeModal()">×</button>
+        <button class="close-modal" onclick="closeModal()">X</button>
         <img id="detail-img" src="" alt="">
         <h2 id="detail-name"></h2>
         <p id="detail-variant"></p>
@@ -65,15 +65,15 @@
     </div>
     <div id="modal-overlay" class="overlay hidden"></div>
 
-    <!-- КОРЗИНА -->
+    <!-- КОРЗИНА С УДАЛЕНИЕМ -->
     <div id="cart-modal" class="cart-modal hidden">
         <h3>Корзина</h3>
+        <button id="clear-cart" class="clear-btn">Очистить всё</button>
         <ul id="cart-items"></ul>
         <button id="checkout-btn" class="buy-btn">Оформить заказ</button>
         <button class="close-btn" onclick="document.getElementById('cart-modal').classList.add('hidden')">Закрыть</button>
     </div>
 
-    <!-- ФУТЕР -->
     <footer class="footer">
         <p>ИП Голиков Никита Сергеевич</p>
         <p>ИНН: 253502067548</p>
