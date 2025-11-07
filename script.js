@@ -1,146 +1,76 @@
 const tg = window.Telegram.WebApp;
+tg.ready();
+tg.expand();
 
-let phones = [
-    { id: 1, name: "Samsung Galaxy S24", brand: "Samsung", price: 85000, oldPrice: 95000, desc: "Флагман Samsung 2024 года.", img: "https://via.placeholder.com/300x200/0099ff/ffffff?text=Samsung+S24" },
-    { id: 2, name: "Honor 400 Pro", brand: "Honor", price: 56000, oldPrice: 63000, desc: "Современный смартфон Honor.", img: "https://via.placeholder.com/300x200/ff6666/ffffff?text=Honor+400+Pro" },
-    { id: 3, name: "Huawei P70", brand: "Huawei", price: 72000, oldPrice: 79000, desc: "Камера и мощность в одном корпусе.", img: "https://via.placeholder.com/300x200/00cc99/ffffff?text=Huawei+P70" },
+// Авто-тема Telegram
+if (tg.colorScheme === 'dark') document.body.classList.add('dark');
+
+const phones = [
+    { id:1, fullName:"Samsung Galaxy A17 4Gb/128Gb чёрный", img:"https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a17-5g-1.jpg", oldPrice:15999, newPrice:14999 },
+    { id:2, fullName:"Honor X6C 6Gb/128Gb чёрный", img:"https://fdn2.gsmarena.com/vv/pics/honor/honor-x6c-1.jpg", oldPrice:9999, newPrice:9499 },
+    { id:3, fullName:"Huawei nova Y63 4Gb/128Gb чёрный", img:"https://fdn2.gsmarena.com/vv/pics/huawei/huawei-nova-y63-1.jpg", oldPrice:9999, newPrice:8499 }
+    // Добавь остальные телефоны сюда по аналогии
 ];
 
 let cart = [];
-let currentPhone = null;
 
-const listEl = document.getElementById("phones-list");
-const cartCount = document.getElementById("cart-count");
-const sidebar = document.getElementById("sidebar");
-const overlay = document.getElementById("overlay");
-const toast = document.getElementById("toast");
+// Рендер телефонов
+function renderPhones() {
+    const list = document.getElementById('phones-list');
+    const query = document.getElementById('search-input').value.toLowerCase();
+    list.innerHTML = phones
+        .filter(p => p.fullName.toLowerCase().includes(query))
+        .map(p => `
+        <div class="phone-card" onclick="showPhone(${p.id})">
+            <img src="${p.img}" alt="${p.fullName}">
+            <h3>${p.fullName}</h3>
+            <div class="price">
+                <span class="old-price">${p.oldPrice.toLocaleString()} ₽</span>
+                <span class="new-price">${p.newPrice.toLocaleString()} ₽</span>
+            </div>
+            <button onclick="event.stopPropagation(); addToCart(${p.id})" class="buy-btn">В корзину</button>
+        </div>
+    `).join('');
+}
+renderPhones();
 
-// ==== Загрузка товаров ====
-function loadPhones() {
-    listEl.innerHTML = "";
-    document.getElementById("loader").classList.remove("hidden");
+// Поиск
+function searchPhones() { renderPhones(); }
 
-    setTimeout(() => {
-        document.getElementById("loader").classList.add("hidden");
-        phones.forEach(p => {
-            const el = document.createElement("div");
-            el.className = "phone-card";
-            el.innerHTML = `
-                <img src="${p.img}" alt="${p.name}">
-                <div class="info">
-                    <h4>${p.name}</h4>
-                    <div class="price">
-                        <span class="old-price">${p.oldPrice} ₽</span>
-                        <span class="new-price">${p.price} ₽</span>
-                    </div>
-                </div>
-            `;
-            el.onclick = () => showPhoneDetail(p);
-            listEl.appendChild(el);
-        });
-    }, 600);
+// Добавление в корзину
+function addToCart(id) {
+    const phone = phones.find(p => p.id===id);
+    cart.push(phone);
+    updateCart();
+    tg.showAlert('Добавлено в корзину!');
 }
 
-// ==== Поиск ====
-function searchPhones() {
-    const q = document.getElementById("search-input").value.toLowerCase();
-    listEl.innerHTML = "";
-    phones.filter(p => p.name.toLowerCase().includes(q)).forEach(p => {
-        const el = document.createElement("div");
-        el.className = "phone-card";
-        el.innerHTML = `<img src="${p.img}"><div class="info"><h4>${p.name}</h4></div>`;
-        el.onclick = () => showPhoneDetail(p);
-        listEl.appendChild(el);
-    });
+// Обновление корзины
+function updateCart() {
+    document.getElementById('cart-count').textContent = cart.length;
+    document.getElementById('cart-items').innerHTML = cart.map(p => `<li>${p.fullName} — ${p.newPrice.toLocaleString()} ₽</li>`).join('');
 }
 
-// ==== Сортировка ====
-function sortPhones() {
-    const val = document.getElementById("sort-select").value;
-    if (val === "price-asc") phones.sort((a,b)=>a.price-b.price);
-    if (val === "price-desc") phones.sort((a,b)=>b.price-a.price);
-    if (val === "discount") phones.sort((a,b)=>(b.oldPrice-b.price)-(a.oldPrice-a.price));
-    loadPhones();
-}
+// Вкладки
+const tabs = { catalog: document.getElementById('tab-catalog'), cart: document.getElementById('tab-cart'), profile: document.getElementById('tab-profile') };
+const btns = document.querySelectorAll('.tab-btn');
+btns.forEach(btn => btn.onclick = () => {
+    const tab = btn.dataset.tab;
+    Object.values(tabs).forEach(t=>t.classList.remove('active'));
+    Object.values(btns).forEach(b=>b.classList.remove('active'));
+    tabs[tab].classList.add('active');
+    btn.classList.add('active');
+});
 
-// ==== Категории ====
-function showBrand(brand) {
-    closeSidebar();
-    listEl.innerHTML = "";
-    phones.filter(p=>p.brand===brand).forEach(p=>{
-        const el=document.createElement("div");
-        el.className="phone-card";
-        el.innerHTML=`<img src="${p.img}"><div class="info"><h4>${p.name}</h4></div>`;
-        el.onclick=()=>showPhoneDetail(p);
-        listEl.appendChild(el);
-    });
-}
-function showCategory() { closeSidebar(); loadPhones(); }
-
-// ==== Детали ====
-function showPhoneDetail(p) {
-    currentPhone = p;
-    document.getElementById("phones-container").classList.add("hidden");
-    const d = document.getElementById("phone-detail");
-    d.classList.remove("hidden");
-    document.getElementById("phone-img").src = p.img;
-    document.getElementById("phone-name").textContent = p.name;
-    document.getElementById("phone-desc").textContent = p.desc;
-    document.getElementById("old-price").textContent = p.oldPrice + " ₽";
-    document.getElementById("new-price").textContent = p.price + " ₽";
-
-    tg.BackButton.show();
-    tg.BackButton.onClick(backToList);
-}
-
-function backToList() {
-    document.getElementById("phone-detail").classList.add("hidden");
-    document.getElementById("phones-container").classList.remove("hidden");
-    tg.BackButton.hide();
-}
-
-// ==== Корзина ====
-function addToCart(p) {
-    cart.push(p);
-    cartCount.textContent = cart.length;
-    showToast("Добавлено в корзину ✅");
-}
-
-document.getElementById("cart-icon").onclick = () => {
-    const modal = document.getElementById("cart-modal");
-    modal.classList.remove("hidden");
-    const list = document.getElementById("cart-items");
-    list.innerHTML = cart.map(i => `<li>${i.name} — ${i.price} ₽</li>`).join("");
+// Оформление заказа
+document.getElementById('checkout-btn').onclick = () => {
+    const name = document.getElementById('customer-name').value.trim();
+    const phone = document.getElementById('customer-phone').value.trim();
+    if(!name || !phone) return tg.showAlert('Введите имя и телефон!');
+    if(cart.length===0) return tg.showAlert('Корзина пуста!');
+    const order = cart.map(p => `${p.fullName} — ${p.newPrice.toLocaleString()} ₽`).join('\n');
+    tg.sendData(`Новый заказ:\n${order}\n\nИмя: ${name}\nТелефон: ${phone}\nИП Голиков Никита Сергеевич\nИНН: 253502067548`);
+    cart = [];
+    updateCart();
+    tg.showAlert('Заказ отправлен!');
 };
-function closeCart() {
-    document.getElementById("cart-modal").classList.add("hidden");
-}
-
-// ==== Сайдбар ====
-document.getElementById("catalog-btn").onclick = ()=>{
-    sidebar.classList.add("active");
-    overlay.classList.remove("hidden");
-};
-function closeSidebar() {
-    sidebar.classList.remove("active");
-    overlay.classList.add("hidden");
-}
-
-// ==== Toast ====
-function showToast(msg) {
-    toast.textContent = msg;
-    toast.classList.add("show");
-    setTimeout(()=>toast.classList.remove("show"), 2000);
-}
-
-// ==== Баннер автопрокрутка ====
-let bannerIndex = 0;
-setInterval(()=>{
-    const banners=document.querySelectorAll(".banner");
-    banners.forEach(b=>b.classList.remove("active"));
-    bannerIndex=(bannerIndex+1)%banners.length;
-    banners[bannerIndex].classList.add("active");
-},3000);
-
-// ==== Инициализация ====
-loadPhones();
