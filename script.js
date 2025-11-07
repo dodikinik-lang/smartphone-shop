@@ -63,15 +63,35 @@ function showPhone(id) {
 function closeModal() { document.getElementById('phone-detail-modal').classList.add('hidden'); document.getElementById('modal-overlay').classList.add('hidden'); }
 
 // Корзина
-document.getElementById('cart-icon').onclick = ()=>{ document.getElementById('cart-modal').classList.toggle('hidden'); };
-function addToCart(id){ const phone = phones.find(p=>p.id===id); cart.push(phone); updateCart(); tg.showAlert('Добавлено в корзину!'); }
-document.getElementById('checkout-btn').onclick = ()=>{
-    if(cart.length===0) return tg.showAlert('Корзина пуста!');
-    const name = document.getElementById('user-name').value || "не указано";
-    const phoneNumber = document.getElementById('user-phone').value || "не указано";
-    const order = cart.map(p=>`${p.fullName} (${p.variant}) — ${p.newPrice.toLocaleString()} ₽`).join('\n');
-    tg.sendData(`Новый заказ:\n${order}\n\nИмя: ${name}\nТелефон: ${phoneNumber}\nИП Голиков Никита Сергеевич\nИНН: 253502067548`);
-    cart = []; updateCart(); document.getElementById('cart-modal').classList.add('hidden'); tg.close();
+document.getElementById('cart-icon').onclick = ()=>{
+    const cartModal = document.getElementById('cart-modal');
+    if(cartModal.classList.contains('hidden')) {
+        cartModal.classList.remove('hidden');
+    } else {
+        cartModal.classList.add('hidden');
+    }
 };
-function updateCart(){ document.getElementById('cart-count').textContent = cart.length; document.getElementById('cart-items').innerHTML = cart.map(p=>`<li>${p.fullName} (${p.variant}) — ${p.newPrice.toLocaleString()} ₽</li>`).join(''); }
-updateCart();
+
+// Модальное окно деталей телефона
+function showPhone(id) {
+    const phone = phones.find(p=>p.id===id);
+    if(!phone) return;
+    document.getElementById('detail-img').src = phone.img;
+    document.getElementById('detail-name').textContent = phone.fullName;
+    document.getElementById('detail-variant').textContent = phone.variant || '';
+    document.getElementById('detail-specs').innerHTML = (phone.specs || []).map(s=>`<li>${s}</li>`).join('');
+    document.getElementById('detail-old-price').textContent = phone.oldPrice.toLocaleString() + ' ₽';
+    document.getElementById('detail-new-price').textContent = phone.newPrice.toLocaleString() + ' ₽';
+    document.getElementById('detail-buy-btn').onclick = ()=>{
+        addToCart(phone.id);
+        closeModal();
+    };
+    document.getElementById('phone-detail-modal').classList.remove('hidden');
+    document.getElementById('modal-overlay').classList.remove('hidden');
+}
+
+function closeModal() {
+    document.getElementById('phone-detail-modal').classList.add('hidden');
+    document.getElementById('modal-overlay').classList.add('hidden');
+}
+
