@@ -30,6 +30,7 @@ const phones = [
 
 let cart = [];
 let currentBrand = 'all';
+let searchTimeout;
 
 // === УПРАВЛЕНИЕ МОДАЛЬНЫМИ ОКНАМИ ===
 function openCartModal() {
@@ -43,16 +44,110 @@ function closeAllModals() {
     document.getElementById('modal-overlay').classList.add('hidden');
 }
 
+// === УЛУЧШЕННАЯ КОРЗИНА ===
+function getCartTotal() {
+    return cart.reduce((total, item) => total + item.newPrice, 0);
+}
+
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    document.getElementById('notifications-container').appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+// === УЛУЧШЕННОЕ ДОБАВЛЕНИЕ В КОРЗИНУ ===
+function addToCart(id) {
+    const p = phones.find(x => x.id === id);
+    cart.push(p);
+    updateCart();
+    
+    // Анимация кнопки
+    const button = event.target;
+    button.classList.add('added-to-cart');
+    setTimeout(() => button.classList.remove('added-to-cart'), 400);
+    
+    // Вибро-отклик (если доступно)
+    if (window.navigator.vibrate) {
+        window.navigator.vibrate(50);
+    }
+    
+    showNotification('Товар добавлен в корзину!');
+}
+
+// === ПОДСВЕТКА АКТИВНЫХ ФИЛЬТРОВ ===
+function updateActiveFilters() {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.dataset.brand === currentBrand) {
+            btn.style.transform = 'scale(1.05)';
+        } else {
+            btn.style.transform = 'scale(1)';
+        }
+    });
+}
+
+// === СОХРАНЕНИЕ В LOCALSTORAGE ===
+function saveCartToStorage() {
+    localStorage.setItem('smartphoneShopCart', JSON.stringify(cart));
+}
+
+function loadCartFromStorage() {
+    const savedCart = localStorage.getItem('smartphoneShopCart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCart();
+    }
+}
+
+// === ПОДСВЕТКА НОВЫХ ТОВАРОВ ===
+function markNewProducts() {
+    return [1, 5, 9, 15, 21]; // ID новых товаров
+}
+
+// === УЛУЧШЕННЫЙ ПОИСК ===
+function debouncedSearch() {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+        applyFilters();
+    }, 300);
+}
+
+// === АНИМАЦИЯ ЗАГРУЗКИ ИЗОБРАЖЕНИЙ ===
+function handleImageLoad(img) {
+    img.style.opacity = '0';
+    setTimeout(() => {
+        img.style.transition = 'opacity 0.3s ease';
+        img.style.opacity = '1';
+    }, 100);
+}
+
 // === РЕНДЕР КАРТОЧЕК ===
 function applyFilters() {
     const query = document.getElementById('search-input').value.toLowerCase();
     let filtered = phones;
+    
     if (currentBrand !== 'all') filtered = filtered.filter(p => p.brand === currentBrand);
-    if (query) filtered = filtered.filter(p => p.fullName.toLowerCase().includes(query) || p.variant.toLowerCase().includes(query));
+    if (query) filtered = filtered.filter(p => 
+        p.fullName.toLowerCase().includes(query) || 
+        p.variant.toLowerCase().includes(query) ||
+        p.brand.toLowerCase().includes(query)
+    );
+    
+    const newProducts = markNewProducts();
     
     document.getElementById('phones-list').innerHTML = filtered.map(p => `
         <div class="phone-card-mini" onclick="showPhone(${p.id})">
-            <img src="${p.img}" alt="${p.fullName}" onerror="this.src='https://via.placeholder.com/150x200/f0f0f0/666?text=Нет+фото'" loading="lazy">
+            <div style="position: relative;">
+                <img src="${p.img}" alt="${p.fullName}" 
+                     onerror="this.src='https://via.placeholder.com/150x200/f0f0f0/666?text=Нет+фото'" 
+                     loading="lazy"
+                     onload="handleImageLoad(this)">
+                ${newProducts.includes(p.id) ? '<div class="new-badge">NEW</div>' : ''}
+            </div>
             <div class="info">
                 <h4>${p.fullName}</h4>
                 <div class="variant">${p.variant}</div>
@@ -60,10 +155,14 @@ function applyFilters() {
                     <span class="old">${p.oldPrice.toLocaleString()} ₽</span>
                     <span class="new">${p.newPrice.toLocaleString()} ₽</span>
                 </div>
-                <button onclick="event.stopPropagation(); addToCart(${p.id})" class="buy-mini">В корзину</button>
+                <button onclick="event.stopPropagation(); addToCart(${p.id})" class="buy-mini">
+                    В корзину
+                </button>
             </div>
         </div>
     `).join('');
+    
+    updateActiveFilters();
 }
 
 // === ФИЛЬТРЫ ===
@@ -104,46 +203,75 @@ function showPhone(id) {
 }
 
 // === КОРЗИНА ===
-function addToCart(id) {
-    const p = phones.find(x => x.id === id);
-    cart.push(p);
-    updateCart();
-    tg.showAlert('Добавлено в корзину!');
-}
-
 function removeFromCart(i) { 
-    cart.splice(i,1); 
-    updateCart(); 
-    tg.showAlert('Товар удален из корзины'); 
+    tg.showPopup({
+        title: "Удалить товар?",
+        message: "Вы уверены, что хотите удалить товар из корзины?",
+        buttons: [
+            {type: 'destructive', text: 'Удалить', id: 'delete'},
+            {type: 'cancel', text: 'Отмена', id: 'cancel'}
+        ]
+    }, (btnId) => {
+        if (btnId === 'delete') {
+            cart.splice(i, 1);
+            updateCart();
+            showNotification('Товар удален из корзины', 'warning');
+        }
+    });
 }
 
 function clearCart() { 
-    cart = []; 
-    updateCart(); 
-    tg.showAlert('Корзина очищена'); 
+    tg.showPopup({
+        title: "Очистить корзину?",
+        message: "Вы уверены, что хотите очистить всю корзину?",
+        buttons: [
+            {type: 'destructive', text: 'Очистить', id: 'clear'},
+            {type: 'cancel', text: 'Отмена', id: 'cancel'}
+        ]
+    }, (btnId) => {
+        if (btnId === 'clear') {
+            cart = []; 
+            updateCart(); 
+            showNotification('Корзина очищена', 'warning');
+        }
+    });
 }
 
 function updateCart() {
     document.getElementById('cart-count').textContent = cart.length;
-    document.getElementById('cart-items').innerHTML = cart.map((p,i) => `
-        <li>
-            <div class="cart-item-text">${p.fullName} (${p.variant})</div>
-            <div class="cart-item-price">${p.newPrice.toLocaleString()} ₽</div>
-            <button class="remove-item" onclick="event.stopPropagation(); removeFromCart(${i})">×</button>
+    
+    const total = getCartTotal();
+    document.getElementById('cart-items').innerHTML = cart.length === 0 ? 
+        '<li style="text-align: center; padding: 20px; color: #666;">Корзина пуста</li>' :
+        cart.map((p,i) => `
+            <li>
+                <div class="cart-item-text">
+                    <strong>${p.fullName}</strong>
+                    <div style="font-size: 12px; color: #666;">${p.variant}</div>
+                </div>
+                <div class="cart-item-price">${p.newPrice.toLocaleString()} ₽</div>
+                <button class="remove-item" onclick="event.stopPropagation(); removeFromCart(${i})">×</button>
+            </li>
+        `).join('') + `
+        <li style="border-top: 2px solid #007aff; padding-top: 12px; margin-top: 8px;">
+            <div class="cart-item-text"><strong>Итого:</strong></div>
+            <div class="cart-item-price" style="font-size: 18px; color: #007aff;">${total.toLocaleString()} ₽</div>
         </li>
-    `).join('');
+    `;
+    
+    saveCartToStorage();
 }
 
 // === ОПЛАТА В TON ===
 function checkout() {
-    if (!cart.length) return tg.showAlert('Корзина пуста!');
+    if (!cart.length) return showNotification('Корзина пуста!', 'error');
     
     const name = document.getElementById('user-name').value.trim();
     const tel = document.getElementById('user-phone').value.trim();
     
     // Проверка данных пользователя
     if (!name || !tel) {
-        tg.showAlert('Пожалуйста, заполните ваши данные во вкладке "Ваши данные"');
+        showNotification('Пожалуйста, заполните ваши данные во вкладке "Ваши данные"', 'error');
         switchTab('info');
         closeAllModals();
         return;
@@ -172,7 +300,7 @@ function checkout() {
             cart = []; 
             updateCart(); 
             closeAllModals();
-            tg.showAlert('Заказ отправлен! Ожидайте подтверждения.'); 
+            showNotification('Заказ отправлен! Ожидайте подтверждения.'); 
             setTimeout(() => tg.close(), 2000);
         }
     });
@@ -185,10 +313,13 @@ function initApp() {
     document.getElementById('clear-cart').onclick = clearCart;
     document.getElementById('checkout-btn').onclick = checkout;
     
+    // Загружаем корзину из localStorage
+    loadCartFromStorage();
+    
     // Гарантируем, что корзина закрыта при загрузке
     closeAllModals();
     
-    // Автозаполнение данных пользователя из Telegram, если доступно
+    // Автозаполнение данных пользователя из Telegram
     const user = tg.initDataUnsafe.user;
     if (user) {
         const userName = user.first_name + (user.last_name ? ' ' + user.last_name : '');
