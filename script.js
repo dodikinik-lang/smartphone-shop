@@ -105,16 +105,38 @@ function updateCart() {
     `).join('');
 }
 
+// === ОПЛАТА В TON НА ТВОЙ КОШЕЛЁК ===
 document.getElementById('checkout-btn').onclick = () => {
     if (cart.length === 0) return tg.showAlert('Корзина пуста!');
-    const name = document.getElementById('user-name').value.trim() || 'не указано';
-    const tel = document.getElementById('user-phone').value.trim() || 'не указано';
-    const order = cart.map(p => `${p.fullName} (${p.variant}) — ${p.newPrice.toLocaleString()} ₽`).join('\n');
-    tg.sendData(`Новый заказ:\n${order}\n\nИмя: ${name}\nТелефон: ${tel}\n\nИП Голиков Никита Сергеевич\nИНН: 253502067548`);
-    cart = [];
-    updateCart();
-    document.getElementById('cart-modal').classList.add('hidden');
-    tg.close();
+
+    const name = document.getElementById('user-name').value.trim() || 'Не указано';
+    const tel = document.getElementById('user-phone').value.trim() || 'Не указано';
+    const totalRUB = cart.reduce((sum, p) => sum + p.newPrice, 0);
+    const totalTON = (totalRUB / 500).toFixed(4); // 1 TON ≈ 500 ₽
+
+    const orderText = cart.map(p => `${p.fullName} (${p.variant}) — ${p.newPrice.toLocaleString()} ₽`).join('\n');
+    const wallet = 'UQDHgEkatlXaVCujXHE-xmCFiEdRATslkkQHqTEVcK_hfZhB'; // ← ТВОЙ КОШЕЛЁК
+
+    tg.showPopup({
+        title: 'Оплата в TON',
+        message: `Сумма: ${totalRUB.toLocaleString()} ₽\n\n` +
+                 `Оплатите: ${totalTON} TON\n\n` +
+                 `Адрес:\n\`${wallet}\`\n\n` +
+                 `После оплаты нажмите "Я оплатил"`,
+        buttons: [
+            { type: 'ok', text: 'Я оплатил', id: 'paid' },
+            { type: 'cancel', text: 'Отмена' }
+        ]
+    }, (buttonId) => {
+        if (buttonId === 'paid') {
+            tg.sendData(`ОПЛАТА ЧЕРЕЗ TON\n\n${orderText}\n\nСумма: ${totalRUB.toLocaleString()} ₽ = ${totalTON} TON\nИмя: ${name}\nТелефон: ${tel}\n\nКошелёк: ${wallet}\n\nИП Голиков Никита Сергеевич\nИНН: 253502067548`);
+            cart = [];
+            updateCart();
+            document.getElementById('cart-modal').classList.add('hidden');
+            tg.showAlert('Заказ отправлен! Ожидайте подтверждения.');
+            tg.close();
+        }
+    });
 };
 
 applyFilters();
