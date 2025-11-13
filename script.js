@@ -10,7 +10,7 @@ const phones = [
     {id:6,fullName:"Samsung Galaxy A36",variant:"8Gb/256Gb чёрный EAC",img:"./images/samsungA36black.jpg",oldPrice:32999,newPrice:31499,specs:["6.7\" Super AMOLED","Exynos 1380","50MP OIS","5000 mAh"],brand:"Samsung"},
     {id:7,fullName:"Samsung Galaxy A56",variant:"8Gb/128Gb зелёный EAC",img:"./images/samsungA56green.jpg",oldPrice:35999,newPrice:34499,specs:["6.7\" AMOLED 120Hz","Exynos 1480","50MP","5000 mAh"],brand:"Samsung"},
     {id:8,fullName:"Samsung Galaxy A56",variant:"8Gb/256Gb чёрный EAC",img:"./images/samsungA56black.jpg",oldPrice:39999,newPrice:35499,specs:["6.7\" AMOLED 120Hz","Exynos 1480","50MP","5000 mAh"],brand:"Samsung"},
-    // Остальные телефоны (Honor, Huawei) — без фото, но с placeholder
+    // Остальные — с placeholder
     {id:9,fullName:"Honor X6C",variant:"6Gb/128Gb чёрный EAC",img:"https://via.placeholder.com/300x400/f0f0f0/666?text=Honor+X6C",oldPrice:9999,newPrice:9499,specs:["6.5\" IPS","Helio G85","50MP","5000 mAh"],brand:"Honor"},
     {id:10,fullName:"Honor X6C",variant:"6Gb/256Gb синий EAC",img:"https://via.placeholder.com/300x400/f0f0f0/666?text=Honor+X6C",oldPrice:11999,newPrice:11499,specs:["6.5\" IPS","Helio G85","50MP","5000 mAh"],brand:"Honor"},
     {id:11,fullName:"Honor X7C",variant:"6Gb/128Gb белый EAC",img:"https://via.placeholder.com/300x400/f0f0f0/666?text=Honor+X7C",oldPrice:13999,newPrice:12499,specs:["6.6\" AMOLED","Snapdragon 680","64MP","5000 mAh"],brand:"Honor"},
@@ -36,9 +36,10 @@ function applyFilters() {
     let filtered = phones;
     if (currentBrand !== 'all') filtered = filtered.filter(p => p.brand === currentBrand);
     if (query) filtered = filtered.filter(p => p.fullName.toLowerCase().includes(query) || p.variant.toLowerCase().includes(query));
+    
     document.getElementById('phones-list').innerHTML = filtered.map(p => `
         <div class="phone-card" onclick="showPhone(${p.id})">
-            <div class="phone-images">
+            <div class="phone-image">
                 <img src="${p.img}" alt="${p.fullName}" onerror="this.src='https://via.placeholder.com/300x400/f0f0f0/666?text=Нет+фото'" loading="lazy">
             </div>
             <h3>${p.fullName}</h3>
@@ -61,8 +62,14 @@ function filterByBrand(brand) {
 function switchTab(t) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-    if (t === 'catalog') { document.querySelector('.tab-btn:nth-child  (1)').classList.add('active'); document.getElementById('catalog-tab').classList.remove('hidden'); }
-    if (t === 'info') { document.querySelector('.tab-btn:nth-child(2)').classList.add('active'); document.getElementById('info-tab').classList.remove('hidden'); }
+    if (t === 'catalog') { 
+        document.querySelector('.tab-btn:nth-child(1)').classList.add('active'); 
+        document.getElementById('catalog-tab').classList.remove('hidden'); 
+    }
+    if (t === 'info') { 
+        document.querySelector('.tab-btn:nth-child(2)').classList.add('active'); 
+        document.getElementById('info-tab').classList.remove('hidden'); 
+    }
 }
 
 function showPhone(id) {
@@ -70,12 +77,14 @@ function showPhone(id) {
     const img = document.getElementById('detail-img');
     img.src = p.img;
     img.onerror = () => { img.src = 'https://via.placeholder.com/300x600/f0f0f0/666?text=Нет+фото'; };
+    
     document.getElementById('detail-name').textContent = p.fullName;
     document.getElementById('detail-variant').textContent = p.variant;
     document.getElementById('detail-specs').innerHTML = p.specs.map(s => `<li>${s}</li>`).join('');
     document.getElementById('detail-old-price').textContent = p.oldPrice.toLocaleString() + ' ₽';
     document.getElementById('detail-new-price').textContent = p.newPrice.toLocaleString() + ' ₽';
     document.getElementById('detail-buy-btn').onclick = () => { addToCart(id); closeModal(); };
+    
     document.getElementById('phone-detail-modal').classList.remove('hidden');
     document.getElementById('modal-overlay').classList.remove('hidden');
 }
