@@ -11,16 +11,16 @@ const phones = [
     {id:6,fullName:"Samsung Galaxy A36",variant:"8/256 чёрный",img:"./images/samsungA36black.jpg",oldPrice:32999,newPrice:31499,specs:["6.7\" AMOLED","Exynos 1380","50MP","5000 mAh"],brand:"Samsung",rating:4.4,reviews:28},
     {id:7,fullName:"Samsung Galaxy A56",variant:"8/128 зелёный",img:"./images/samsungA56green.jpg",oldPrice:35999,newPrice:34499,specs:["6.7\" AMOLED 120Hz","Exynos 1480","50MP","5000 mAh"],brand:"Samsung",rating:4.9,reviews:12},
     {id:8,fullName:"Samsung Galaxy A56",variant:"8/256 чёрный",img:"./images/samsungA56black.jpg",oldPrice:39999,newPrice:35499,specs:["6.7\" AMOLED 120Hz","Exynos 1480","50MP","5000 mAh"],brand:"Samsung",rating:4.7,reviews:19},
-    {id:9,fullName:"Honor X6C",variant:"6/128 чёрный",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=X6C",oldPrice:9999,newPrice:9499,specs:["6.5\" IPS","Helio G85","50MP","5000 mAh"],brand:"Honor",rating:4.2,reviews:45,isNew:true},
-    {id:10,fullName:"Honor X6C",variant:"6/256 синий",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=X6C",oldPrice:11999,newPrice:11499,specs:["6.5\" IPS","Helio G85","50MP","5000 mAh"],brand:"Honor",rating:4.0,reviews:38},
-    {id:11,fullName:"Honor X7C",variant:"6/128 белый",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=X7C",oldPrice:13999,newPrice:12499,specs:["6.6\" AMOLED","Snapdragon 680","64MP","5000 mAh"],brand:"Honor",rating:4.5,reviews:26},
-    {id:12,fullName:"Honor X7C",variant:"8/256 чёрный",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=X7C",oldPrice:16999,newPrice:15499,specs:["6.6\" AMOLED","Snapdragon 680","64MP","5000 mAh"],brand:"Honor",rating:4.3,reviews:33},
-    {id:13,fullName:"Honor X8C",variant:"8/128 серебр.",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=X8C",oldPrice:17999,newPrice:16499,specs:["6.7\" AMOLED 120Hz","Snapdragon 7 Gen 1","108MP","4500 mAh"],brand:"Honor",rating:4.7,reviews:17},
-    {id:14,fullName:"Honor X8C",variant:"8/256 чёрный",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=X8C",oldPrice:19999,newPrice:18499,specs:["6.7\" AMOLED 120Hz","Snapdragon 7 Gen 1","108MP","4500 mAh"],brand:"Honor",rating:4.6,reviews:21},
-    {id:15,fullName:"Honor X9C",variant:"8/256 золотой",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=X9C",oldPrice:24999,newPrice:23999,specs:["6.78\" OLED 120Hz","Snapdragon 8 Gen 2","200MP","5000 mAh"],brand:"Honor",rating:4.9,reviews:8,isNew:true},
-    {id:16,fullName:"Honor 400 Lite",variant:"8/256 чёрный",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=400+Lite",oldPrice:24999,newPrice:21499,specs:["6.7\" AMOLED","Dimensity 6020","108MP","5000 mAh"],brand:"Honor",rating:4.1,reviews:29},
-    {id:17,fullName:"Honor 400",variant:"8/256 белый",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=400",oldPrice:36999,newPrice:33999,specs:["6.78\" OLED","Snapdragon 8 Gen 3","50MP","5300 mAh"],brand:"Honor",rating:4.8,reviews:14},
-    {id:18,fullName:"Honor 400 Pro",variant:"12/256 чёрный",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=400+Pro",oldPrice:56999,newPrice:51999,specs:["6.8\" OLED 120Hz","Snapdragon 8 Gen 3","200MP","5500 mAh"],brand:"Honor",rating:5.0,reviews:5},
+    {id:9,fullName:"Honor X6C",variant:"6/128 чёрный",img:"./images/honorX6cblack.jpg",oldPrice:9999,newPrice:9499,specs:["6.5\" IPS","Helio G85","50MP","5000 mAh"],brand:"Honor",rating:4.2,reviews:45,isNew:true},
+    {id:10,fullName:"Honor X6C",variant:"6/256 синий",img:"./images/honorX6cblue.jpg",oldPrice:11999,newPrice:11499,specs:["6.5\" IPS","Helio G85","50MP","5000 mAh"],brand:"Honor",rating:4.0,reviews:38},
+    {id:11,fullName:"Honor X7C",variant:"6/128 белый",img:"./images/honorX7cwhite.jpg",oldPrice:13999,newPrice:12499,specs:["6.6\" AMOLED","Snapdragon 680","64MP","5000 mAh"],brand:"Honor",rating:4.5,reviews:26},
+    {id:12,fullName:"Honor X7C",variant:"8/256 чёрный",img:"./images/honorX7cblack.jpg",oldPrice:16999,newPrice:15499,specs:["6.6\" AMOLED","Snapdragon 680","64MP","5000 mAh"],brand:"Honor",rating:4.3,reviews:33},
+    {id:13,fullName:"Honor X8C",variant:"8/128 серебр.",img:"./images/honorX8cwhite.jpg",oldPrice:17999,newPrice:16499,specs:["6.7\" AMOLED 120Hz","Snapdragon 7 Gen 1","108MP","4500 mAh"],brand:"Honor",rating:4.7,reviews:17},
+    {id:14,fullName:"Honor X8C",variant:"8/256 чёрный",img:"./images/honorX8cblack.jpg",oldPrice:19999,newPrice:18499,specs:["6.7\" AMOLED 120Hz","Snapdragon 7 Gen 1","108MP","4500 mAh"],brand:"Honor",rating:4.6,reviews:21},
+    {id:15,fullName:"Honor X9C",variant:"8/256 золотой",img:"./images/honorX9cblack.jpg",oldPrice:24999,newPrice:23999,specs:["6.78\" OLED 120Hz","Snapdragon 8 Gen 2","200MP","5000 mAh"],brand:"Honor",rating:4.9,reviews:8,isNew:true},
+    {id:16,fullName:"Honor 400 Lite",variant:"8/256 чёрный",img:"./images/honor400Liteblack.jpg",oldPrice:24999,newPrice:21499,specs:["6.7\" AMOLED","Dimensity 6020","108MP","5000 mAh"],brand:"Honor",rating:4.1,reviews:29},
+    {id:17,fullName:"Honor 400",variant:"8/256 белый",img:"./images/honor400white.jpg",oldPrice:36999,newPrice:33999,specs:["6.78\" OLED","Snapdragon 8 Gen 3","50MP","5300 mAh"],brand:"Honor",rating:4.8,reviews:14},
+    {id:18,fullName:"Honor 400 Pro",variant:"12/256 чёрный",img:"./images/honor400proBlack.jpg",oldPrice:56999,newPrice:51999,specs:["6.8\" OLED 120Hz","Snapdragon 8 Gen 3","200MP","5500 mAh"],brand:"Honor",rating:5.0,reviews:5},
     {id:19,fullName:"Huawei nova Y63",variant:"4/128 чёрный",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=Y63",oldPrice:9999,newPrice:8499,specs:["6.52\" IPS","Snapdragon 680","50MP","5000 mAh"],brand:"Huawei",rating:3.9,reviews:52},
     {id:20,fullName:"Huawei nova Y73",variant:"8/256 синий",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=Y73",oldPrice:14999,newPrice:13499,specs:["6.75\" IPS 90Hz","Snapdragon 680","50MP","5000 mAh"],brand:"Huawei",rating:4.2,reviews:37},
     {id:21,fullName:"Huawei nova 14",variant:"12/256 розовый",img:"https://via.placeholder.com/150x200/f0f0f0/666?text=nova+14",oldPrice:33999,newPrice:21999,specs:["6.7\" OLED","Kirin 8000","60MP","4500 mAh"],brand:"Huawei",rating:4.6,reviews:23,isNew:true},
@@ -614,3 +614,4 @@ function initApp() {
 
 // Запускаем приложение после полной загрузки DOM
 document.addEventListener('DOMContentLoaded', initApp);
+
