@@ -179,7 +179,7 @@ function checkout() {
 }
 
 // === ИНИЦИАЛИЗАЦИЯ ===
-document.addEventListener('DOMContentLoaded', function() {
+function initApp() {
     // Назначаем обработчики событий
     document.getElementById('cart-icon').onclick = openCartModal;
     document.getElementById('clear-cart').onclick = clearCart;
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const user = tg.initDataUnsafe.user;
     if (user) {
         const userName = user.first_name + (user.last_name ? ' ' + user.last_name : '');
-        document.getElementById('user-name').value = userName;
+        document.getElementById('user-name').value = userName || '';
         if (user.username) {
             document.getElementById('user-phone').value = `@${user.username}`;
         }
@@ -200,4 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     applyFilters();
     updateCart();
-});
+}
+
+// Запускаем приложение после полной загрузки DOM
+document.addEventListener('DOMContentLoaded', initApp);
