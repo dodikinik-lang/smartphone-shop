@@ -92,6 +92,7 @@ function showPhone(id) {
     const p = phones.find(x => x.id === id);
     const img = document.getElementById('detail-img');
     img.src = p.img;
+    img.onerror = () => { img.src = 'https://via.placeholder.com/300x400/f0f0f0/666?text=Нет+фото'; };
     document.getElementById('detail-name').textContent = p.fullName;
     document.getElementById('detail-variant').textContent = p.variant;
     document.getElementById('detail-specs').innerHTML = p.specs.map(s => `<li>${s}</li>`).join('');
@@ -122,28 +123,26 @@ function clearCart() {
     tg.showAlert('Корзина очищена'); 
 }
 
-document.getElementById('clear-cart').onclick = clearCart;
-
 function updateCart() {
     document.getElementById('cart-count').textContent = cart.length;
     document.getElementById('cart-items').innerHTML = cart.map((p,i) => `
         <li>
             <div class="cart-item-text">${p.fullName} (${p.variant})</div>
             <div class="cart-item-price">${p.newPrice.toLocaleString()} ₽</div>
-            <button class="remove-item" onclick="removeFromCart(${i})">×</button>
+            <button class="remove-item" onclick="event.stopPropagation(); removeFromCart(${i})">×</button>
         </li>
     `).join('');
 }
 
 // === ОПЛАТА В TON ===
-document.getElementById('checkout-btn').onclick = () => {
+function checkout() {
     if (!cart.length) return tg.showAlert('Корзина пуста!');
     
     const name = document.getElementById('user-name').value.trim();
     const tel = document.getElementById('user-phone').value.trim();
     
     // Проверка данных пользователя
-    if (!name || name === 'Не указано' || !tel || tel === 'Не указано') {
+    if (!name || !tel) {
         tg.showAlert('Пожалуйста, заполните ваши данные во вкладке "Ваши данные"');
         switchTab('info');
         closeAllModals();
@@ -177,20 +176,28 @@ document.getElementById('checkout-btn').onclick = () => {
             setTimeout(() => tg.close(), 2000);
         }
     });
-};
-
-// === ИНИЦИАЛИЗАЦИЯ ===
-document.getElementById('cart-icon').onclick = openCartModal;
-
-// Автозаполнение данных пользователя из Telegram, если доступно
-const user = tg.initDataUnsafe.user;
-if (user) {
-    const userName = user.first_name + (user.last_name ? ' ' + user.last_name : '');
-    document.getElementById('user-name').value = userName;
-    if (user.username) {
-        document.getElementById('user-phone').value = `@${user.username}`;
-    }
 }
 
-applyFilters();
-updateCart();
+// === ИНИЦИАЛИЗАЦИЯ ===
+document.addEventListener('DOMContentLoaded', function() {
+    // Назначаем обработчики событий
+    document.getElementById('cart-icon').onclick = openCartModal;
+    document.getElementById('clear-cart').onclick = clearCart;
+    document.getElementById('checkout-btn').onclick = checkout;
+    
+    // Гарантируем, что корзина закрыта при загрузке
+    closeAllModals();
+    
+    // Автозаполнение данных пользователя из Telegram, если доступно
+    const user = tg.initDataUnsafe.user;
+    if (user) {
+        const userName = user.first_name + (user.last_name ? ' ' + user.last_name : '');
+        document.getElementById('user-name').value = userName;
+        if (user.username) {
+            document.getElementById('user-phone').value = `@${user.username}`;
+        }
+    }
+
+    applyFilters();
+    updateCart();
+});
