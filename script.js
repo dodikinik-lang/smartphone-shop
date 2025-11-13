@@ -1,5 +1,6 @@
 const tg = window.Telegram.WebApp;
-tg.ready(); tg.expand();
+tg.ready(); 
+tg.expand();
 
 const phones = [
     {id:1,fullName:"Samsung Galaxy A17",variant:"4/128 чёрный",img:"./images/samsungA17black.jpg",oldPrice:15999,newPrice:14999,specs:["6.5\" PLS","Helio G85","50MP","5000 mAh"],brand:"Samsung"},
@@ -30,6 +31,18 @@ const phones = [
 let cart = [];
 let currentBrand = 'all';
 
+// === УПРАВЛЕНИЕ МОДАЛЬНЫМИ ОКНАМИ ===
+function openCartModal() {
+    document.getElementById('cart-modal').classList.remove('hidden');
+    document.getElementById('modal-overlay').classList.remove('hidden');
+}
+
+function closeAllModals() {
+    document.getElementById('phone-detail-modal').classList.add('hidden');
+    document.getElementById('cart-modal').classList.add('hidden');
+    document.getElementById('modal-overlay').classList.add('hidden');
+}
+
 // === РЕНДЕР КАРТОЧЕК ===
 function applyFilters() {
     const query = document.getElementById('search-input').value.toLowerCase();
@@ -39,7 +52,7 @@ function applyFilters() {
     
     document.getElementById('phones-list').innerHTML = filtered.map(p => `
         <div class="phone-card-mini" onclick="showPhone(${p.id})">
-            <img src="${p.img}" alt="${p.fullName}" onerror="this.src='https://via.placeholder.com/150x200/f0f0f0/666?text=Нет'" loading="lazy">
+            <img src="${p.img}" alt="${p.fullName}" onerror="this.src='https://via.placeholder.com/150x200/f0f0f0/666?text=Нет+фото'" loading="lazy">
             <div class="info">
                 <h4>${p.fullName}</h4>
                 <div class="variant">${p.variant}</div>
@@ -79,49 +92,34 @@ function showPhone(id) {
     const p = phones.find(x => x.id === id);
     const img = document.getElementById('detail-img');
     img.src = p.img;
-    img.onerror = () => { img.src = 'https://via.placeholder.com/300x500/f0f0f0/666?text=Нет+фото'; };
     document.getElementById('detail-name').textContent = p.fullName;
     document.getElementById('detail-variant').textContent = p.variant;
     document.getElementById('detail-specs').innerHTML = p.specs.map(s => `<li>${s}</li>`).join('');
     document.getElementById('detail-old-price').textContent = p.oldPrice.toLocaleString() + ' ₽';
     document.getElementById('detail-new-price').textContent = p.newPrice.toLocaleString() + ' ₽';
-    document.getElementById('detail-buy-btn').onclick = () => { addToCart(id); closeModal(); };
+    document.getElementById('detail-buy-btn').onclick = () => { addToCart(id); closeAllModals(); };
     document.getElementById('phone-detail-modal').classList.remove('hidden');
     document.getElementById('modal-overlay').classList.remove('hidden');
 }
-
-function closeModal() {
-    document.getElementById('phone-detail-modal').classList.add('hidden');
-    document.getElementById('modal-overlay').classList.add('hidden');
-}
-
-document.getElementById('modal-overlay').onclick = () => {
-    closeModal();
-    document.getElementById('cart-modal').classList.add('hidden');
-};
-
-document.getElementById('cart-icon').onclick = () => {
-    document.getElementById('cart-modal').classList.toggle('hidden');
-};
 
 // === КОРЗИНА ===
 function addToCart(id) {
     const p = phones.find(x => x.id === id);
     cart.push(p);
     updateCart();
-    tg.showAlert('Добавлено!');
+    tg.showAlert('Добавлено в корзину!');
 }
 
 function removeFromCart(i) { 
     cart.splice(i,1); 
     updateCart(); 
-    tg.showAlert('Удалено'); 
+    tg.showAlert('Товар удален из корзины'); 
 }
 
 function clearCart() { 
     cart = []; 
     updateCart(); 
-    tg.showAlert('Очищено'); 
+    tg.showAlert('Корзина очищена'); 
 }
 
 document.getElementById('clear-cart').onclick = clearCart;
@@ -129,16 +127,29 @@ document.getElementById('clear-cart').onclick = clearCart;
 function updateCart() {
     document.getElementById('cart-count').textContent = cart.length;
     document.getElementById('cart-items').innerHTML = cart.map((p,i) => `
-        <li><div class="cart-item-text">${p.fullName} (${p.variant}) — ${p.newPrice.toLocaleString()} ₽</div>
-        <button class="remove-item" onclick="removeFromCart(${i})">×</button></li>
+        <li>
+            <div class="cart-item-text">${p.fullName} (${p.variant})</div>
+            <div class="cart-item-price">${p.newPrice.toLocaleString()} ₽</div>
+            <button class="remove-item" onclick="removeFromCart(${i})">×</button>
+        </li>
     `).join('');
 }
 
 // === ОПЛАТА В TON ===
 document.getElementById('checkout-btn').onclick = () => {
     if (!cart.length) return tg.showAlert('Корзина пуста!');
-    const name = document.getElementById('user-name').value.trim() || 'Не указано';
-    const tel = document.getElementById('user-phone').value.trim() || 'Не указано';
+    
+    const name = document.getElementById('user-name').value.trim();
+    const tel = document.getElementById('user-phone').value.trim();
+    
+    // Проверка данных пользователя
+    if (!name || name === 'Не указано' || !tel || tel === 'Не указано') {
+        tg.showAlert('Пожалуйста, заполните ваши данные во вкладке "Ваши данные"');
+        switchTab('info');
+        closeAllModals();
+        return;
+    }
+    
     const totalRUB = cart.reduce((s,p) => s + p.newPrice, 0);
     const totalTON = (totalRUB / 500).toFixed(4);
     const orderText = cart.map(p => `${p.fullName} (${p.variant}) — ${p.newPrice.toLocaleString()} ₽`).join('\n');
@@ -146,20 +157,40 @@ document.getElementById('checkout-btn').onclick = () => {
 
     tg.showPopup({
         title: 'Оплата в TON',
-        message: `Сумма: ${totalRUB.toLocaleString()} ₽\nОплатите: ${totalTON} TON\n\nАдрес:\n\`${wallet}\``,
+        message: `Сумма: ${totalRUB.toLocaleString()} ₽\nК оплате: ${totalTON} TON\n\nАдрес кошелька:\n\`${wallet}\``,
         buttons: [{type:'ok',text:'Я оплатил',id:'paid'},{type:'cancel',text:'Отмена'}]
     }, (btn) => {
         if (btn === 'paid') {
-            tg.sendData(`ОПЛАТА TON\n${orderText}\n\nСумма: ${totalRUB} ₽ = ${totalTON} TON\nИмя: ${name}\nТел: ${tel}\nКошелёк: ${wallet}\n\nИП Голиков Н.С.\nИНН: 253502067548`);
+            const orderData = {
+                products: cart.map(p => `${p.fullName} (${p.variant}) - ${p.newPrice} ₽`),
+                total: totalRUB,
+                totalTON: totalTON,
+                customer: { name, tel },
+                wallet: wallet
+            };
+            
+            tg.sendData(JSON.stringify(orderData));
             cart = []; 
             updateCart(); 
-            document.getElementById('cart-modal').classList.add('hidden');
-            tg.showAlert('Заказ отправлен!'); 
-            tg.close();
+            closeAllModals();
+            tg.showAlert('Заказ отправлен! Ожидайте подтверждения.'); 
+            setTimeout(() => tg.close(), 2000);
         }
     });
 };
 
 // === ИНИЦИАЛИЗАЦИЯ ===
+document.getElementById('cart-icon').onclick = openCartModal;
+
+// Автозаполнение данных пользователя из Telegram, если доступно
+const user = tg.initDataUnsafe.user;
+if (user) {
+    const userName = user.first_name + (user.last_name ? ' ' + user.last_name : '');
+    document.getElementById('user-name').value = userName;
+    if (user.username) {
+        document.getElementById('user-phone').value = `@${user.username}`;
+    }
+}
+
 applyFilters();
 updateCart();
