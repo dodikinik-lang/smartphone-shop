@@ -11,12 +11,16 @@
 <div class="app">
     <header class="header">
         <h1>СмартПлощадка</h1>
-        <div id="cart-icon" class="cart-icon">Корзина <span id="cart-count">0</span></div>
+        <div class="header-controls">
+            <button id="compare-btn" class="compare-btn" onclick="showCompare()">⚖️ <span id="compare-count">0</span></button>
+            <div id="cart-icon" class="cart-icon">Корзина <span id="cart-count">0</span></div>
+        </div>
     </header>
 
     <div class="tabs">
         <button class="tab-btn active" onclick="switchTab('catalog')">Каталог</button>
         <button class="tab-btn" onclick="switchTab('info')">Ваши данные</button>
+        <button class="tab-btn" onclick="switchTab('history')">История</button>
     </div>
 
     <div id="catalog-tab" class="tab-content">
@@ -24,11 +28,31 @@
             <input type="text" id="search-input" placeholder="Поиск..." oninput="debouncedSearch()">
         </div>
 
-        <div class="brand-filters">
-            <button class="filter-btn active" data-brand="all" onclick="filterByBrand('all')">Все</button>
-            <button class="filter-btn" data-brand="Samsung" onclick="filterByBrand('Samsung')">Samsung</button>
-            <button class="filter-btn" data-brand="Honor" onclick="filterByBrand('Honor')">Honor</button>
-            <button class="filter-btn" data-brand="Huawei" onclick="filterByBrand('Huawei')">Huawei</button>
+        <div class="controls-row">
+            <div class="brand-filters">
+                <button class="filter-btn active" data-brand="all" onclick="filterByBrand('all')">Все</button>
+                <button class="filter-btn" data-brand="Samsung" onclick="filterByBrand('Samsung')">Samsung</button>
+                <button class="filter-btn" data-brand="Honor" onclick="filterByBrand('Honor')">Honor</button>
+                <button class="filter-btn" data-brand="Huawei" onclick="filterByBrand('Huawei')">Huawei</button>
+            </div>
+
+            <div class="sort-options">
+                <select id="sort-select" onchange="applySort()">
+                    <option value="default">По умолчанию</option>
+                    <option value="price_asc">Цена ↑</option>
+                    <option value="price_desc">Цена ↓</option>
+                    <option value="name_asc">Название А-Я</option>
+                    <option value="name_desc">Название Я-А</option>
+                    <option value="newest">Сначала новые</option>
+                    <option value="popular">По популярности</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Рекомендации -->
+        <div id="recommendations-section" class="recommendations-section hidden">
+            <h3>🔥 Рекомендуем</h3>
+            <div id="recommendations-list" class="recommendations-list"></div>
         </div>
 
         <main class="phones-container">
@@ -42,22 +66,39 @@
             <input type="text" id="user-name" placeholder="Иван Иванов">
             <label>Телефон:</label>
             <input type="tel" id="user-phone" placeholder="+7 (999) 123-45-67">
+            <button class="promo-btn" onclick="applyPromoCode()">Применить промокод</button>
         </div>
     </div>
 
+    <div id="history-tab" class="tab-content hidden">
+        <div class="history-section">
+            <h3>📱 История просмотров</h3>
+            <div id="history-list" class="history-list"></div>
+            
+            <h3 style="margin-top: 20px;">❤️ Избранное</h3>
+            <div id="favorites-list" class="favorites-list"></div>
+        </div>
+    </div>
+
+    <!-- Модальные окна -->
     <div id="phone-detail-modal" class="modal hidden">
         <button class="close-modal" onclick="closeAllModals()">×</button>
         <img id="detail-img" src="" alt="" onerror="this.src='https://via.placeholder.com/300x400/f0f0f0/666?text=Нет+фото'">
         <h2 id="detail-name"></h2>
+        <div id="detail-rating" class="detail-rating"></div>
         <p id="detail-variant"></p>
         <ul id="detail-specs"></ul>
         <div class="price">
             <span class="old-price" id="detail-old-price"></span>
             <span class="new-price" id="detail-new-price"></span>
         </div>
-        <button id="detail-buy-btn" class="buy-btn">В корзину</button>
+        <div class="detail-actions">
+            <button id="detail-buy-btn" class="buy-btn">В корзину</button>
+            <button id="detail-compare-btn" class="compare-btn-small">Сравнить</button>
+            <button id="detail-favorite-btn" class="favorite-btn">❤️</button>
+        </div>
     </div>
-    
+
     <div id="modal-overlay" class="overlay hidden" onclick="closeAllModals()"></div>
 
     <div id="cart-modal" class="cart-modal hidden">
@@ -68,13 +109,27 @@
         <div class="cart-items-container">
             <ul id="cart-items"></ul>
         </div>
+        <div class="cart-total">
+            Итого: <span id="cart-total-price">0</span> ₽
+        </div>
         <button id="checkout-btn" class="buy-btn">Оформить заказ</button>
+        <button class="promo-btn" onclick="applyPromoCode()">Применить промокод</button>
+        <button class="close-btn" onclick="closeAllModals()">Закрыть</button>
+    </div>
+
+    <div id="compare-modal" class="modal hidden">
+        <div class="compare-header">
+            <h3>⚖️ Сравнение товаров</h3>
+            <button class="close-modal" onclick="closeAllModals()">×</button>
+        </div>
+        <div id="compare-list" class="compare-list"></div>
         <button class="close-btn" onclick="closeAllModals()">Закрыть</button>
     </div>
 
     <footer class="footer">
         <p>ИП Голиков Никита Сергеевич</p>
         <p>ИНН: 253502067548</p>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Сменить тему</button>
     </footer>
 </div>
 
