@@ -46,8 +46,8 @@
     </div>
 
     <div id="phone-detail-modal" class="modal hidden">
-        <button class="close-modal" onclick="closeModal()">×</button>
-        <img id="detail-img" src="" alt="">
+        <button class="close-modal" onclick="closeAllModals()">×</button>
+        <img id="detail-img" src="" alt="" onerror="this.src='https://via.placeholder.com/300x400/f0f0f0/666?text=Нет+фото'">
         <h2 id="detail-name"></h2>
         <p id="detail-variant"></p>
         <ul id="detail-specs"></ul>
@@ -57,16 +57,18 @@
         </div>
         <button id="detail-buy-btn" class="buy-btn">В корзину</button>
     </div>
-    <div id="modal-overlay" class="overlay hidden"></div>
+    <div id="modal-overlay" class="overlay hidden" onclick="closeAllModals()"></div>
 
     <div id="cart-modal" class="cart-modal hidden">
         <div class="cart-header">
             <h3>Корзина</h3>
             <button id="clear-cart" class="clear-btn">Очистить всё</button>
         </div>
-        <ul id="cart-items"></ul>
+        <div class="cart-items-container">
+            <ul id="cart-items"></ul>
+        </div>
         <button id="checkout-btn" class="buy-btn">Оформить заказ</button>
-        <button class="close-btn" onclick="document.getElementById('cart-modal').classList.add('hidden')">Закрыть</button>
+        <button class="close-btn" onclick="closeAllModals()">Закрыть</button>
     </div>
 
     <footer class="footer">
