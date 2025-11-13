@@ -21,7 +21,7 @@
 
     <div id="catalog-tab" class="tab-content">
         <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Поиск..." oninput="applyFilters()">
+            <input type="text" id="search-input" placeholder="Поиск..." oninput="debouncedSearch()">
         </div>
 
         <div class="brand-filters">
@@ -77,6 +77,9 @@
         <p>ИНН: 253502067548</p>
     </footer>
 </div>
+
+<!-- Уведомления -->
+<div id="notifications-container"></div>
 
 <script src="script.js"></script>
 </body>
